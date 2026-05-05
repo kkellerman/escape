@@ -1,7 +1,12 @@
 body {
-  height: 100%;
-  background-image: url(../img/topography.png);
+  min-height: 100vh;
+  background-image: url(/img/topography.png);
   font-family: 'Londrina Solid', cursive;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px 0;
+  box-sizing: border-box;
 }
 span {
   font-weight: 300;
@@ -13,6 +18,14 @@ span {
   display: none;
 }
 
+#destinationSelect {
+  display: none;
+}
+
+#kitSelect {
+  display: none;
+}
+
 #store {
   display: none;
 }
@@ -20,21 +33,24 @@ span {
 #gameMainScreen {
   display: none;
 }
-#wagon-6,
-#wagon-5,
-#wagon-4,
-#wagon-3,
-#wagon-2 {
-  display: none;
-  margin-top: 36px;
+#jeep-main {
   position: absolute;
+  bottom: 0;
+  left: 78%;
+  height: 70px;
   z-index: 1;
+  transition: left 500ms ease-in-out;
 }
 
-#wagon-1 {
+
+#wheel-anim {
+  display: none;
   position: absolute;
-  margin-top: 36px;
-  z-index: 1;
+  bottom: 0;
+  left: 78%;
+  margin-top: 85px;
+  z-index: 100;
+  height: 35px;
 }
 
 #wheel-6,
@@ -44,14 +60,6 @@ span {
 #wheel-2,
 #wheel-1 {
   display: none;
-  position: absolute;
-  margin-top: 85px;
-  z-index: 100;
-  height: 35px;
-}
-
-#wheel-6 {
-  margin-left: 25px;
 }
 
 #jesus {
@@ -72,7 +80,7 @@ span {
   margin-left: 15px;
 }
 
-#wagon-images .col-md-2 {
+#vehicle-images .col-md-2 {
   padding: 0px 5px;
 }
 
@@ -91,20 +99,17 @@ span {
 }
 
 #characterInput .prettyColumn {
-  min-height: 298px;
+  min-height: auto;
 }
 
 
 
 .container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background: white;
   border: 4px double black;
-  padding: 30px;
-  min-height: 665px;
+  padding: 20px 30px;
+  min-height: 0;
+  min-width: 770px;
 }
 
 .store-titles {
@@ -119,14 +124,17 @@ span {
   float: right;
 }
 
-#wagon-images {
-  background-image: url(../img/mountains.png);
+#vehicle-images {
   background-size: cover;
   background-position: bottom;
   padding: 10px;
   border: 2px solid black;
   margin: 0;
+  width: 705px;
   height: 151px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
 .icon-animate {
@@ -135,7 +143,7 @@ span {
   position: absolute;
   bottom: 50%;
   left: 5%;
-  background-image: url(../img/beans.png);
+  background-image: url(/img/beans.png);
   background-size: cover;
   animation: example 40s linear 0s infinite reverse;
   -moz-animation: 40s linear 0s reverse none infinite example;
@@ -145,65 +153,105 @@ span {
 
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes example {
-  0%   {left:5%; bottom:50%; transform:rotate(0deg); background-image: url(../img/beans.png);}
-  10%  {left:90%; bottom:25%; transform:rotate(360deg); background-image: url(../img/beans.png);}
-  20%  {left:5%; bottom:45%; transform:rotate(0deg); background-image: url(../img/boots.png);}
-  30%  {left:90%; bottom:75%; transform:rotate(360deg); background-image: url(../img/boots.png);}
-  40%  {left:5%; bottom:55%; transform:rotate(0deg); background-image: url(../img/gun.png);}
-  50% {left:90%; bottom:25%; transform:rotate(360deg); background-image: url(../img/gun.png);}
-  60%  {left:5%; bottom:45%; transform:rotate(0deg); background-image: url(../img/whisky.png);}
-  70% {left:90%; bottom:65%; transform:rotate(360deg); background-image: url(../img/whisky.png);}
-  80%  {left:5%; bottom:35%; transform:rotate(0deg); background-image: url(../img/ox.png);}
-  90% {left:90%; bottom:25%; transform:rotate(360deg); background-image: url(../img/ox.png);}
-  100%   {left:5%; bottom:50%; transform:rotate(0deg); background-image: url(../img/beans.png);}
+  0%   {left:5%; bottom:50%; transform:rotate(0deg); background-image: url(/img/beans.png);}
+  10%  {left:90%; bottom:25%; transform:rotate(360deg); background-image: url(/img/beans.png);}
+  20%  {left:5%; bottom:45%; transform:rotate(0deg); background-image: url(/img/boots.png);}
+  30%  {left:90%; bottom:75%; transform:rotate(360deg); background-image: url(/img/boots.png);}
+  40%  {left:5%; bottom:55%; transform:rotate(0deg); background-image: url(/img/gun.png);}
+  50% {left:90%; bottom:25%; transform:rotate(360deg); background-image: url(/img/gun.png);}
+  60%  {left:5%; bottom:45%; transform:rotate(0deg); background-image: url(/img/whisky.png);}
+  70% {left:90%; bottom:65%; transform:rotate(360deg); background-image: url(/img/whisky.png);}
+  80%  {left:5%; bottom:35%; transform:rotate(0deg); background-image: url(/img/redoubt.png);}
+  90% {left:90%; bottom:25%; transform:rotate(360deg); background-image: url(/img/redoubt.png);}
+  100%   {left:5%; bottom:50%; transform:rotate(0deg); background-image: url(/img/beans.png);}
 }
 
 /* Standard syntax */
 @keyframes example {
-  0%   {left:5%; bottom:50%; transform:rotate(0deg); background-image: url(../img/beans.png);}
-  10%  {left:90%; bottom:25%; transform:rotate(360deg); background-image: url(../img/beans.png);}
-  20%  {left:5%; bottom:45%; transform:rotate(0deg); background-image: url(../img/boots.png);}
-  30%  {left:90%; bottom:75%; transform:rotate(360deg); background-image: url(../img/boots.png);}
-  40%  {left:5%; bottom:55%; transform:rotate(0deg); background-image: url(../img/gun.png);}
-  50% {left:90%; bottom:25%; transform:rotate(360deg); background-image: url(../img/gun.png);}
-  60%  {left:5%; bottom:45%; transform:rotate(0deg); background-image: url(../img/whisky.png);}
-  70% {left:90%; bottom:65%; transform:rotate(360deg); background-image: url(../img/whisky.png);}
-  80%  {left:5%; bottom:35%; transform:rotate(0deg); background-image: url(../img/ox.png);}
-  90% {left:90%; bottom:25%; transform:rotate(360deg); background-image: url(../img/ox.png);}
-  100%   {left:5%; bottom:50%; transform:rotate(0deg); background-image: url(../img/beans.png);}
+  0%   {left:5%; bottom:50%; transform:rotate(0deg); background-image: url(/img/beans.png);}
+  10%  {left:90%; bottom:25%; transform:rotate(360deg); background-image: url(/img/beans.png);}
+  20%  {left:5%; bottom:45%; transform:rotate(0deg); background-image: url(/img/boots.png);}
+  30%  {left:90%; bottom:75%; transform:rotate(360deg); background-image: url(/img/boots.png);}
+  40%  {left:5%; bottom:55%; transform:rotate(0deg); background-image: url(/img/gun.png);}
+  50% {left:90%; bottom:25%; transform:rotate(360deg); background-image: url(/img/gun.png);}
+  60%  {left:5%; bottom:45%; transform:rotate(0deg); background-image: url(/img/whisky.png);}
+  70% {left:90%; bottom:65%; transform:rotate(360deg); background-image: url(/img/whisky.png);}
+  80%  {left:5%; bottom:35%; transform:rotate(0deg); background-image: url(/img/redoubt.png);}
+  90% {left:90%; bottom:25%; transform:rotate(360deg); background-image: url(/img/redoubt.png);}
+  100%   {left:5%; bottom:50%; transform:rotate(0deg); background-image: url(/img/beans.png);}
 }
 
-.icon-wagon {
+.icon-vehicle {
   width: 120px;
   height: 103px;
   position: absolute;
   bottom: 24%;
   left: 5%;
-  background-image: url(../img/wagon.png);
+  background-image: url(/img/jeep_final.gif);
   background-size: cover;
-  animation: wagonwheel 40s linear 0s infinite reverse;
-  -moz-animation: 40s linear 0s reverse none infinite wagonwheel;
-  -webkit-animation: wagonwheel 40s linear 0s infinite reverse;
+  animation: vehiclewheel 40s linear 0s infinite reverse;
+  -moz-animation: 40s linear 0s reverse none infinite vehiclewheel;
+  -webkit-animation: vehiclewheel 40s linear 0s infinite reverse;
 }
 
 #start {
   text-align: center;
 }
 
+.start-tagline {
+  font-size: 16px;
+  font-weight: 300;
+  color: #555;
+  margin: 1rem auto;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
 #startBTN {
-  margin-top: 3rem;
+  margin-top: 1.5rem;
   width: 40%;
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+}
+
+.screen-subtitle {
+  color: #888;
+  font-size: 18px;
+  margin-bottom: 1.5rem;
+}
+
+#destinationSelect,
+#kitSelect {
+  padding: 20px 0;
+}
+
+#destinationSelect h1,
+#kitSelect h1 {
+  margin-bottom: 0.25rem;
+}
+
+#destinationSelect .prettyColumn label,
+#kitSelect .prettyColumn label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 20px;
+}
+
+#destinationBTN,
+#kitBTN {
+  margin-top: 20px;
+  width: 140px;
 }
 
 /* Safari 4.0 - 8.0 */
-@-webkit-keyframes wagonwheel {
+@-webkit-keyframes vehiclewheel {
   0%   {left:5%;}
   50% {left:85%;}
   100% {left:5%;}
 }
 
 /* Standard syntax */
-@keyframes wagonwheel {
+@keyframes vehiclewheel {
   0%   {left:5%;}
   50% {left:85%;}
   100% {left:5%;}
@@ -219,6 +267,8 @@ span {
 
 .main-title h1 {
     font-size: 75px;
+    color: #c0392b;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
     animation: titleeffect 10s linear 0s 1 normal;
     -moz-animation: 10s linear 0s normal none 1 titleeffect;
     -webkit-animation: titleeffect 10s linear 0s 1 normal;
@@ -241,24 +291,67 @@ span {
   width:100%;
   margin-bottom:10px;
 }
-.sky1 {
-    background: #d5e4eb;
+/* legacy sky step classes (kept for init) */
+.sky1 { background-image: url(/img/la-start.png); }
+.sky2 { background-image: url(/img/la-start.png); }
+.sky3 { background-image: url(/img/la-start.png); }
+.sky4 { background-image: url(/img/la-start.png); }
+.sky5 { background-image: url(/img/la-start.png); }
+.sky6 { background-image: url(/img/la-start.png); }
+
+/* journey sky phases */
+.sky-cali {
+  background-image:
+    linear-gradient(to bottom, rgba(181, 96, 26, 0.65) 0%, rgba(181, 96, 26, 0.2) 55%, transparent 100%),
+    url(/img/la-start.png);
+  background-color: #b5601a;
 }
-.sky2 {
-  background: #bad1de;
+
+/* smoke columns visible only during LA phase */
+#vehicle-images.sky-cali::before,
+#vehicle-images.sky-cali::after {
+  content: '';
+  position: absolute;
+  bottom: 40%;
+  width: 18px;
+  height: 60px;
+  border-radius: 50% 50% 20% 20%;
+  background: rgba(60, 55, 50, 0.45);
+  filter: blur(6px);
+  animation: smokeRise 4s ease-out infinite;
+  z-index: 2;
+  pointer-events: none;
 }
-.sky3 {
-    background: #d5e4eb;
+
+#vehicle-images.sky-cali::before {
+  left: 18%;
+  animation-duration: 3.5s;
+  animation-delay: 0s;
 }
-.sky4 {
-  background: #bad1de;
+
+#vehicle-images.sky-cali::after {
+  left: 62%;
+  width: 24px;
+  height: 80px;
+  animation-duration: 5s;
+  animation-delay: 1.2s;
 }
-.sky5 {
-  background: #d5e4eb;
+
+@keyframes smokeRise {
+  0%   { transform: translateY(0)   scaleX(1);   opacity: 0.6; }
+  50%  { transform: translateY(-30px) scaleX(1.4); opacity: 0.35; }
+  100% { transform: translateY(-65px) scaleX(1.8); opacity: 0; }
 }
-.sky6 {
-  background: #bad1de;
-}
+.sky-desert   { background-image: url(/img/mountains.png); background-color: #e8c870; }
+.sky-plateau  { background-image: url(/img/mountains.png); background-color: #5a9fd4; }
+.sky-mountain { background-image: url(/img/mountains.png); background-color: #3a70a8; }
+.sky-golden   { background-image: url(/img/mountains.png); background-color: #e08840; }
+.sky-dusk     { background-image: url(/img/mountains.png); background-color: #b04030; }
+.sky-night    { background-image: url(/img/mountains.png); background-color: #101828; }
+.sky-dawn     { background-image: url(/img/mountains.png); background-color: #7050a0; }
+.sky-idaho    { background-image: url(/img/mountains.png); background-color: #3a7850; }
+.sky-montana  { background-image: url(/img/mountains.png); background-color: #4a80a0; }
+.sky-wyoming  { background-image: url(/img/mountains.png); background-color: #c88040; }
 
 img {
   max-width: 100%;
@@ -269,17 +362,172 @@ img {
   width: 108px;
 }
 
-#gameMainScreen .prettyColumn {
-  margin-bottom: 2rem;
+#game-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  position: relative;
 }
 
-#gameMainScreen h1 {
-    margin-bottom: 0px;
+#game-header h1 {
+  margin: 0;
+  flex: 1;
 }
 
-#gameMainScreen .col-md-4 .btn {
+#game-header #faq,
+#game-header #sacrifice-button {
+  position: static;
+  margin-left: 10px;
+}
+
+#game-main-columns {
+  margin: 8px 0 0 0;
+  height: 310px;
+  display: flex;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+#event-col {
+  padding-right: 8px;
+  height: 100%;
+}
+
+#event-col #ongoing-text-box {
+  height: 100%;
+  margin-top: 0;
+}
+
+#crew-col {
+  padding-left: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 100%;
+}
+
+#game-bottom-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #ccc;
+  background: #f2f2f2;
+  padding: 6px 8px;
+  margin-top: 6px;
+}
+
+#game-bottom-bar #crew-supplies {
+  display: flex;
+  flex: 1;
+  gap: 6px;
+  align-items: center;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+#game-bottom-bar #crew-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+#game-bottom-bar #crew-actions .btn {
+  width: auto;
+  padding: 4px 14px;
+}
+
+#crew-col h5 {
+  margin: 0;
+  font-size: 13px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 4px;
+}
+
+#crew-chars {
+  background: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.crew-member {
+  margin-bottom: 3px;
+  font-size: 12px;
+}
+
+.crew-member:last-child {
+  margin-bottom: 0;
+}
+
+.crew-name {
+  font-weight: bold;
+}
+
+.crew-cond {
+  font-size: 11px;
+  color: #666;
+}
+
+.crew-dead {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+
+.crew-dead .health-bar {
+  display: none;
+}
+
+/* event log tone colors */
+.event-positive { color: #28a745; }
+.event-neutral  { color: #555; }
+.event-negative { color: #e07020; }
+.event-death    { color: #c0392b; font-weight: bold; }
+.event-illness  { color: #8e44ad; }
+
+/* emoji supply icons */
+.supply-emoji {
+  font-size: 22px;
+  margin: 0;
+  line-height: 1;
+}
+
+#crew-supplies {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.supply-item {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+}
+
+.supply-item img {
+  width: 26px;
+  display: block;
+  margin: 0 auto 2px;
+}
+
+.supply-item p {
+  margin: 0;
+  line-height: 1.2;
+}
+
+#crew-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#crew-actions .btn {
   width: 100%;
-  margin-bottom: 1rem;
 }
 
 #characterInput .col-md-12 {
@@ -287,13 +535,33 @@ img {
    margin-top: 20px;
  }
 
-#charNameInput input {
+#charNameInput input[type="text"] {
   display: block;
   border: none;
   width: 100%;
   margin-bottom: 10px;
   padding: 5px;
   font-size: 23px;
+}
+
+#char5-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#char5-row input[type="text"] {
+  flex: 1;
+  margin-bottom: 10px;
+}
+
+.pet-toggle {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  gap: 2px;
+  white-space: nowrap;
+  margin-bottom: 10px;
 }
 
 #gameMainScreen ul{
@@ -304,9 +572,10 @@ img {
 
 #ongoing-text-box {
   background: #f2f2f2;
-  height: 457px;
-  overflow: scroll;
-  margin-top: 2rem;
+  height: 220px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 8px;
   padding: 10px;
   font-weight: 300;
   letter-spacing: 1px;
@@ -334,7 +603,7 @@ img {
 }
 
  #store {
-  background-image: url(../img/merc.png);
+  background-image: url(/img/merc.png);
   background-size: cover;
   background-position: center;
   height: 597px;
@@ -580,52 +849,70 @@ img {
   margin-bottom: 3px;
 }
 
-#faq {
-  position: absolute;
-  right: 15px;
-}
-
 #faq img {
-  width: 38px;
+  width: 32px;
 }
 
 #sacrifice-button {
-  position: absolute;
-  right: 15px;
   transition: all .2s ease-in-out;
 }
 
 #sacrifice-button img {
-  width: 38px;
+  width: 32px;
 }
 
-
-.ui-widget-header {
-    border: 1px solid #28a745;
-    background: #28a745;
-}
 
 #progress-title {
   margin-bottom: 0px;
   margin-top: 15px;
 }
 
-.ui-progressbar {
+#progressbar {
   height: 3em;
+  background: #e0e0e0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+#progressbar-fill {
+  height: 100%;
+  background: #28a745;
+  width: 0%;
+  transition: width 0.4s ease;
 }
 
 .health-bar {
   height: 9px;
   margin-bottom: 6px;
+  background: #e0e0e0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.health-fill {
+  height: 100%;
+  width: 100%;
+  background: #28a745;
+  transition: width 0.3s, background-color 0.3s;
 }
 
 /*confetti*/
 
 .confetti {
-  background-image: url('../img/fireworks.gif');
+  background-image: url('/img/fireworks.gif');
   background-size: cover;
 }
 
+
+/* Shake animation for validation errors (replaces jQuery UI .effect("shake")) */
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+.shake { animation: shake 0.6s ease; }
 
 /* 100% Image Width on Smaller Screens */
 @media only screen and (max-width: 700px){
