@@ -13,6 +13,7 @@ export class Vehicle {
     this.meds = 0;
     this.distance = 0;
     this.hunted = 0;
+    this.turns = 0;
     this.completed = 0.01;
   }
 
@@ -94,6 +95,7 @@ export class Vehicle {
     this.food = this.food > 0 ? this.food - this.dailyFoodCost() : 0;
     this.days += 1;
     this.distance += 30;
+    this.turns += 1;
     this.completed = parseFloat(((this.distance / getState().goalDistance) * 100).toFixed(2));
     this.resourceChecker();
 

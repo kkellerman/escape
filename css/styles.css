@@ -461,6 +461,12 @@ img {
   padding: 4px 14px;
 }
 
+#turn-counter {
+  font-size: 11px;
+  color: #888;
+  margin: 2px 0 4px;
+}
+
 #crew-col h5 {
   margin: 0;
   font-size: 13px;

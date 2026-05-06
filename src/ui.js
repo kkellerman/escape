@@ -40,13 +40,26 @@ export function renderPlayerStatus(allChars, vehicle) {
   document.getElementById('vehicle-meds-remaining').textContent = vehicle.meds;
   document.querySelectorAll('.current-date').forEach(el => { el.textContent = vehicle.days; });
   document.querySelectorAll('.distance-traveled').forEach(el => { el.textContent = vehicle.distance; });
+  const turnEl = document.getElementById('turn-count');
+  if (turnEl) turnEl.textContent = vehicle.turns;
 }
 
 // ─── Event log ────────────────────────────────────────────────────────────────
 
 export function prependEvent(message, tone = '') {
-  const cls = tone ? ` class="event-${tone}"` : '';
-  document.querySelector('#ongoing-text-box .ongoing-events').insertAdjacentHTML('afterbegin', `<span${cls}>${message}</span><br>`);
+  const container = document.querySelector('#ongoing-text-box .ongoing-events');
+  const span = document.createElement('span');
+  if (tone) span.className = `event-${tone}`;
+  const br = document.createElement('br');
+  container.insertBefore(br, container.firstChild);
+  container.insertBefore(span, container.firstChild);
+
+  let i = 0;
+  const interval = setInterval(() => {
+    span.textContent += message[i];
+    i++;
+    if (i >= message.length) clearInterval(interval);
+  }, 18);
 }
 
 // ─── Screen transitions ───────────────────────────────────────────────────────

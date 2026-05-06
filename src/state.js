@@ -1,4 +1,4 @@
-const DEST_DISTANCES = { '1': 1200, '2': 1200, '3': 950 };
+const DEST_DISTANCES = { '1': 1200, '2': 1200, '3': 960 };
 
 const state = {
   vehicle: null,
