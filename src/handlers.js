@@ -25,8 +25,14 @@ export function initHandlers() {
   // Destination selection → kit selection
   document.getElementById('destinationBTN').addEventListener('click', onDestinationSelect);
 
-  // Kit selection → supply run store
+  // Kit selection → vehicle selection
   document.getElementById('kitBTN').addEventListener('click', onKitSelect);
+
+  // Vehicle selection → supply run store
+  document.getElementById('vehicleBTN').addEventListener('click', () => {
+    ui.hideScreen('vehicleSelect');
+    ui.showScreen('store', 500);
+  });
 
   // Store sub-total preview
   document.getElementById('subtotal').addEventListener('click', () => {
@@ -56,6 +62,14 @@ export function initHandlers() {
   document.getElementById('rest-button').addEventListener('click', onRest);
   document.getElementById('hunt-button').addEventListener('click', onHunt);
   document.getElementById('medkit-button').addEventListener('click', onMedKit);
+
+  // Destination map preview
+  const DEST_IMAGES = { '1': 'panhandle.png', '2': 'montana.png', '3': 'wyoming.png' };
+  document.querySelectorAll('input[name="destination"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.getElementById('dest-map').src = `img/${DEST_IMAGES[radio.value]}`;
+    });
+  });
 
   // Skull button — restart
   document.getElementById('sacrifice').addEventListener('click', () => location.reload());
@@ -102,6 +116,7 @@ function onDestinationSelect() {
     return;
   }
   setState({ destination: dest, goalDistance: DEST_DISTANCES[dest] || 500 });
+  document.getElementById('kit-map').src = document.getElementById('dest-map').src;
   ui.hideScreen('destinationSelect');
   ui.showScreen('kitSelect', 500);
 }
@@ -123,7 +138,7 @@ function onKitSelect() {
   ui.renderPlayerStatus(allChars, vehicle);
 
   ui.hideScreen('kitSelect');
-  ui.showScreen('store', 500);
+  ui.showScreen('vehicleSelect', 500);
 }
 
 // ─── Supply store ─────────────────────────────────────────────────────────────

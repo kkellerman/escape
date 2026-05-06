@@ -26,8 +26,30 @@ span {
   display: none;
 }
 
+#vehicleSelect {
+  display: none;
+}
+
 #store {
   display: none;
+}
+
+#vehicle-select-img {
+  max-width: 100%;
+  margin-top: 20px;
+}
+
+#vehicle-description {
+  margin-top: 16px;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #444;
+}
+
+#vehicleBTN {
+  margin-top: 20px;
+  width: 140px;
 }
 
 #gameMainScreen {
