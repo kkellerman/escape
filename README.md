@@ -15,9 +15,13 @@ Recreation with some artistic license of a historical simulation game of the 16-
 
 ## Technologies Used
 
-* JS ES6
-* CSS, HTML5
+* JavaScript (ES6 modules, vanilla JS)
+* HTML5
+* CSS3
 * Vite
+* Bootstrap 4 (CDN)
+* Google Fonts - Londrina Solid (CDN)
+* Browser Web APIs (DOM manipulation/events, HTML Audio, CSS animations/transitions)
 
 ## License
 
