@@ -625,7 +625,7 @@ img {
 }
 
  #store {
-  background-image: url(/img/merc.png);
+  background-image: url(/img/prep-store.png);
   background-size: cover;
   background-position: center;
   height: 597px;
@@ -917,6 +917,66 @@ img {
   width: 100%;
   background: #28a745;
   transition: width 0.3s, background-color 0.3s;
+}
+
+/* route map modal */
+#mapModal {
+  position: fixed;
+  z-index: 200;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#map-modal-inner {
+  text-align: center;
+}
+
+#route-map-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+#route-map-img {
+  max-width: 600px;
+  width: 90vw;
+  border: 3px solid white;
+}
+
+#route-marker {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: #e74c3c;
+  border: 2px solid white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 6px rgba(231,76,60,0.8);
+  transition: top 0.4s, left 0.4s;
+}
+
+#map-close-hint {
+  color: #ccc;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+#map-button {
+  margin-left: 10px;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+#map-button img {
+  width: 32px;
+}
+
+#map-button:hover {
+  transform: scale(1.2);
 }
 
 /*confetti*/

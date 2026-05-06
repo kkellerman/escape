@@ -215,6 +215,10 @@
           <img src="img/faq.png" alt="Help">
           <p class="tooltiptext">Drive to reach free territory.<br>Click 'Drive' to travel 30 miles per day.<br>Click 'Rest' to heal your crew.<br>Click 'Scavenge' to find rations (costs 1 ammo round).<br>Each action costs 1 day. Each crew member eats 5 lbs of rations per day.</p>
         </div>
+        <div id="map-button">
+          <img src="img/map.png" alt="Route Map">
+          <p class="tooltiptext">Map position.</p>
+        </div>
         <div id="sacrifice-button">
           <img id="sacrifice" src="img/skull.png" alt="Abandon Escape">
           <p class="tooltiptext">Click to abandon the escape. Your party surrenders and you restart.</p>
@@ -304,6 +308,17 @@
       <div id="progressbar"><div id="progressbar-fill"></div></div>
     </div>
 
+  </div>
+
+  <!-- The Modal (route map) -->
+  <div id="mapModal" class="modal" style="display:none">
+    <div id="map-modal-inner">
+      <div id="route-map-wrap">
+        <img src="img/route.png" id="route-map-img" alt="Route Map">
+        <div id="route-marker"></div>
+      </div>
+      <p id="map-close-hint">Click anywhere to close</p>
+    </div>
   </div>
 
   <!-- The Modal (info / event) -->

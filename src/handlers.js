@@ -4,6 +4,7 @@ import { Vehicle } from './Vehicle.js';
 import { storeBuy, storeSubTotal } from './store.js';
 import { crossRiver, detourRiver, sacrifice, flee, payAntifa, fightAntifa, fightBackAntifa } from './landmarks.js';
 import * as ui from './ui.js';
+// showMapModal and hideMapModal are accessed via ui.*
 
 export function initHandlers() {
   // Initialize vehicle image sky class
@@ -70,6 +71,13 @@ export function initHandlers() {
       document.getElementById('dest-map').src = `img/${DEST_IMAGES[radio.value]}`;
     });
   });
+
+  // Map button — show route progress
+  document.getElementById('map-button').addEventListener('click', () => {
+    const { vehicle, destination } = getState();
+    ui.showMapModal(destination, vehicle ? vehicle.completed : 0);
+  });
+  document.getElementById('mapModal').addEventListener('click', () => ui.hideMapModal());
 
   // Skull button — restart
   document.getElementById('sacrifice').addEventListener('click', () => location.reload());
@@ -182,7 +190,7 @@ function onContinue() {
   ui.renderPlayerStatus(allChars, vehicle);
   ui.renderHealthBars(allChars);
   ui.renderProgressBar(vehicle.completed);
-  ui.cycleWagonImage(getState());
+  ui.cycleVehicleImage(getState());
 
   results.forEach(result => handleResult(result, vehicle, allChars));
 }

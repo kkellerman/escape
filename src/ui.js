@@ -199,7 +199,7 @@ const ALL_SKY = [
   'sky1','sky2','sky3','sky4','sky5','sky6',
 ];
 
-export function cycleWagonImage(state) {
+export function cycleVehicleImage(state) {
   const x    = state.vehicleImageIndex;
   const next = x < 6 ? x + 1 : 1;
   const images = document.getElementById('vehicle-images');
@@ -215,6 +215,34 @@ export function cycleWagonImage(state) {
   images.classList.add(phase.cls);
 
   state.vehicleImageIndex = next;
+}
+
+// ─── Route map modal ──────────────────────────────────────────────────────────
+
+// Route waypoints as % of image [startX, startY, endX, endY]
+// Based on route.png: two CA start points, three green destination zones
+const ROUTE_WAYPOINTS = {
+  '1': { sx: 10, sy: 88, ex: 18, ey: 10 },  // North Idaho  (left route, top-left green)
+  '2': { sx: 50, sy: 88, ex: 72, ey: 42 },  // Montana      (right route, center-right green)
+  '3': { sx: 50, sy: 88, ex: 73, ey: 73 },  // Wyoming      (right route, bottom-right green)
+};
+
+export function showMapModal(destination, completedPct) {
+  const modal  = document.getElementById('mapModal');
+  const marker = document.getElementById('route-marker');
+  const wp     = ROUTE_WAYPOINTS[destination] || ROUTE_WAYPOINTS['1'];
+  const pct    = Math.min(completedPct, 100) / 100;
+
+  const x = wp.sx + (wp.ex - wp.sx) * pct;
+  const y = wp.sy + (wp.ey - wp.sy) * pct;
+
+  marker.style.left = `${x}%`;
+  marker.style.top  = `${y}%`;
+  modal.style.display = 'flex';
+}
+
+export function hideMapModal() {
+  document.getElementById('mapModal').style.display = 'none';
 }
 
 export function applyDestinationSky(destination) {
