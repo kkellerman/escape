@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Escape From Cali</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Londrina+Solid:300,400,900" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="css/styles.css" rel="stylesheet">
+  <audio id="jesusSnatch" src="sounds/jesusWheel.mp3" preload="auto"></audio>
+  <audio id="shotgun-fire" src="sounds/shotgun.mp3" preload="auto"></audio>
+  <audio id="shotgun-dry" src="sounds/dry-fire.mp3" preload="auto"></audio>
+  <audio id="openingSong" src="sounds/dystopian-ambient.mp3" preload="auto"></audio>
+  <script type="module" src="/src/main.js"></script>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ── START SCREEN ─────────────────────────────────────────────────── -->
+    <div id="characterSetup">
+      <div id="start">
+        <div class="main-title">
+          <h1>Escape From Cali</h1>
+        </div>
+        <div class="icon-animate"></div>
+        <div class="icon-vehicle"></div>
+        <img src="img/start-cover.jpg" alt="Los Angeles 2050">
+        <p class="start-tagline">Gavin Newsom's tax regime has broken the state.<br>Fortune 500 companies fled. Homelessness, crime, and cost of living have reached a breaking point.<br>Without rule of law, you're forced to relocate to greener pastures.</p>
+        <span id="startBTN" class="btn btn-danger">Escape</span>
+      </div>
+
+      <!-- ── CLASS + PARTY NAMING ───────────────────────────────────────── -->
+      <div id="characterInput">
+        <h1>Escape From Cali</h1>
+        <div class="row">
+          <div id="profession" class="col-md-3">
+            <p>Select your class</p>
+            <div class="prettyColumn">
+              <div id="radio1">
+                <label><input type="radio" name="profession" value="1" checked> Professional</label>
+                <span class="tooltiptext">Attorney / Doctor / Executive. Starts with ₿1300 and no rations.</span>
+              </div>
+              <div id="radio2">
+                <label><input type="radio" name="profession" value="2"> Software Dev</label>
+                <span class="tooltiptext">Remote work bought you options. Starts with ₿900 and 100 lbs of rations.</span>
+              </div>
+              <div id="radio3">
+                <label><input type="radio" name="profession" value="3"> Wage Slave</label>
+                <span class="tooltiptext">No savings, no plan. Just survival instinct. Starts with ₿550.</span>
+              </div>
+            </div>
+            <span id="characterBTN" class="btn btn-danger">Next</span>
+          </div>
+          <div id="charNameInput" class="col-md-3">
+            <p>Name your party:</p>
+            <div class="prettyColumn">
+              <input id="char1" type="text" placeholder="party member 1" value="Snake">
+              <input id="char2" type="text" placeholder="party member 2" value="Maggie">
+              <input id="char3" type="text" placeholder="party member 3" value="Dutch">
+              <input id="char4" type="text" placeholder="party member 4" value="Roz">
+              <div id="char5-row">
+                <input id="char5" type="text" placeholder="party member 5" value="Tuco">
+                <span class="pet-toggle">
+                  <label><input type="radio" name="char5type" value="human" checked> Human</label>
+                  <label><input type="radio" name="char5type" value="pet"> Pet</label>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <!-- <img src="img/redoubt.png" alt="convoy"> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DESTINATION SELECTION ──────────────────────────────────────────── -->
+    <div id="destinationSelect">
+      <h1>Choose Your Destination</h1>
+      <p class="screen-subtitle">Where are you heading?</p>
+      <div class="row">
+        <div class="col-md-5">
+          <div class="prettyColumn">
+            <div id="dest1">
+              <label><input type="radio" name="destination" value="1" checked> North Idaho</label>
+              <span class="tooltiptext">Off-grid. Armed. Free. The last frontier.</span>
+            </div>
+            <div id="dest2">
+              <label><input type="radio" name="destination" value="2"> Missoula, Montana</label>
+              <span class="tooltiptext">Cold winters, warm communities. Real people.</span>
+            </div>
+            <div id="dest3">
+              <label><input type="radio" name="destination" value="3"> Wyoming</label>
+              <span class="tooltiptext">The last state they haven't touched.</span>
+            </div>
+          </div>
+          <span id="destinationBTN" class="btn btn-danger">Set Course</span>
+        </div>
+        <div class="col-md-7">
+          <img id="dest-map" src="img/panhandle.png" alt="route map">
+        </div>
+      </div>
+    </div>
+
+    <!-- ── KIT SELECTION ──────────────────────────────────────────────────── -->
+    <div id="kitSelect">
+      <h1>Choose Your Kit</h1>
+      <p class="screen-subtitle">What are you bringing?</p>
+      <div class="row">
+        <div class="col-md-5">
+          <div class="prettyColumn">
+            <div id="kit1">
+              <label><input type="radio" name="kit" value="1" checked> Survivalist Kit</label>
+              <span class="tooltiptext">4x4, tent, water filter, rifle. 400 lbs rations + 60 rounds. You live or die by your hands.</span>
+            </div>
+            <div id="kit2">
+              <label><input type="radio" name="kit" value="2"> Tech Kit</label>
+              <span class="tooltiptext">Solar charger, satellite comms, drone. 150 lbs rations + 20 rounds. Less food, more info.</span>
+            </div>
+            <div id="kit3">
+              <label><input type="radio" name="kit" value="3"> Budget Kit</label>
+              <span class="tooltiptext">Whatever fit in a backpack. 50 lbs rations + 5 rounds. God help you.</span>
+            </div>
+          </div>
+          <span id="kitBTN" class="btn btn-danger">Load Up</span>
+        </div>
+        <div class="col-md-7">
+          <img id="kit-map" src="img/panhandle.png" alt="destination map">
+        </div>
+      </div>
+    </div>
+
+    <!-- ── VEHICLE SELECTION ────────────────────────────────────────────────── -->
+    <div id="vehicleSelect">
+      <h1>Choose Your Vehicle</h1>
+      <p class="screen-subtitle">What are you driving out?</p>
+      <div class="row">
+        <div class="col-md-5">
+          <div class="prettyColumn">
+            <div id="veh1">
+              <label><input type="radio" name="vehicle" value="1" checked> 4x4 Jeep Wrangler</label>
+              <span class="tooltiptext">Trail-rated and parts are everywhere.</span>
+            </div>
+          </div>
+          <div id="vehicle-description">
+            <p>The 4x4 Jeep Wrangler is the gold standard for Redoubt-bound convoys. High clearance handles washed-out mountain roads and river crossings. The solid axle survives abuse that independent suspension can't. Trail-rated from the factory, parts are everywhere, and every mechanic in Idaho knows one. When the highway ends, the Jeep keeps going.</p>
+          </div>
+          <span id="vehicleBTN" class="btn btn-danger">Roll Out</span>
+        </div>
+        <div class="col-md-7">
+          <img src="img/jeep_final.gif" id="vehicle-select-img" alt="4x4 Jeep">
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SUPPLY RUN (STORE) ─────────────────────────────────────────────── -->
+    <div id="store">
+      <div class="store-fields">
+        <div class="store-titles">
+          <h2>Supply Run</h2>
+          <h3>Crypto: ₿<span class="vehicle-money-remaining"></span></h3>
+        </div>
+        <div class="row" id="upper-store-fields">
+          <div class="col-md-3"><p>Amount</p></div>
+          <div class="col-md-3"><p>Item</p></div>
+          <div class="col-md-3"><p>Cost</p></div>
+          <div class="col-md-3"><p>Total</p></div>
+        </div>
+        <div class="row" id="food-fields">
+          <div class="col-md-3">
+            <input type="number" min="0" name="food" placeholder="0" value="200">
+          </div>
+          <div class="col-md-3"><p>Lbs of Rations</p></div>
+          <div class="col-md-3"><p>₿0.20</p></div>
+          <div class="col-md-3"><p class="food-total"></p></div>
+        </div>
+        <div class="row" id="bullet-fields">
+          <div class="col-md-3">
+            <input type="number" min="0" name="bullets" placeholder="0" value="10">
+          </div>
+          <div class="col-md-3"><p>Ammo Rounds</p></div>
+          <div class="col-md-3"><p>₿0.10</p></div>
+          <div class="col-md-3"><p class="bullet-total"></p></div>
+        </div>
+        <div class="row" id="tire-fields">
+          <div class="col-md-3">
+            <input type="number" min="0" name="tires" placeholder="0" value="1">
+          </div>
+          <div class="col-md-3"><p>Spare Tires</p></div>
+          <div class="col-md-3"><p>₿5.00</p></div>
+          <div class="col-md-3"><p class="tire-total"></p></div>
+        </div>
+        <div class="row" id="med-fields">
+          <div class="col-md-3">
+            <input type="number" min="0" name="meds" placeholder="0" value="0">
+          </div>
+          <div class="col-md-3"><p>Med Kits</p></div>
+          <div class="col-md-3"><p>₿15.00</p></div>
+          <div class="col-md-3"><p class="med-total"></p></div>
+        </div>
+        <span id="back-button" class="btn btn-secondary">Back</span>
+        <span id="subtotal" class="btn btn-warning">Sub-Total</span>
+        <span id="storeBTN" class="btn btn-danger">Buy</span>
+        <p class="store-total">₿0</p>
+      </div>
+    </div>
+
+    <!-- ── MAIN GAMEPLAY ──────────────────────────────────────────────────── -->
+    <div id="gameMainScreen">
+
+      <!-- header -->
+      <div id="game-header">
+        <h1>Escape From Cali</h1>
+        <div id="faq">
+          <img src="img/faq.png" alt="Help">
+          <p class="tooltiptext">Drive to reach free territory.<br>Click 'Drive' to travel 30 miles per day.<br>Click 'Rest' to heal your crew.<br>Click 'Scavenge' to find rations (costs 1 ammo round).<br>Each action costs 1 day. Each crew member eats 5 lbs of rations per day.</p>
+        </div>
+        <div id="sacrifice-button">
+          <img id="sacrifice" src="img/skull.png" alt="Abandon Escape">
+          <p class="tooltiptext">Click to abandon the escape. Your party surrenders and you restart.</p>
+        </div>
+      </div>
+
+      <!-- vehicle panel -->
+      <div id="vehicle-images">
+        <img src="img/jeep_final.gif" id="jeep-main" alt="convoy">
+        <img src="img/wheel.svg"      id="wheel-anim" alt="wheel">
+        <img src="img/jesus.svg"      id="jesus" alt="jesus">
+        <img src="img/shining.svg"    id="star"  alt="star">
+      </div>
+
+      <!-- two-column section: event log + crew chars -->
+      <div class="row" id="game-main-columns">
+        <div class="col-8" id="event-col">
+          <div id="ongoing-text-box">
+            <p class="ongoing-events">Drive to reach free territory.<br>Drive to travel 30 miles per day.<br>Rest to heal your crew.<br>Scavenge to find rations (costs 1 ammo round).<br>Each crew member consumes 5 lbs of rations per day.</p>
+          </div>
+        </div>
+        <div class="col-4" id="crew-col">
+          <h5>Crew Status &mdash; Day <span class="current-date">0</span> &bull; <span class="distance-traveled">0</span> mi</h5>
+          <div id="crew-chars">
+            <div class="crew-member">
+              <span class="crew-name" id="player-one-name"></span>: <span class="crew-status" id="player-one-status"></span>
+              <div id="char1-health-bar" class="health-bar"><div class="health-fill"></div></div>
+              <span class="crew-cond">Cond: <span id="player-one-illness"></span></span>
+            </div>
+            <div class="crew-member">
+              <span class="crew-name" id="player-two-name"></span>: <span class="crew-status" id="player-two-status"></span>
+              <div id="char2-health-bar" class="health-bar"><div class="health-fill"></div></div>
+              <span class="crew-cond">Cond: <span id="player-two-illness"></span></span>
+            </div>
+            <div class="crew-member">
+              <span class="crew-name" id="player-three-name"></span>: <span class="crew-status" id="player-three-status"></span>
+              <div id="char3-health-bar" class="health-bar"><div class="health-fill"></div></div>
+              <span class="crew-cond">Cond: <span id="player-three-illness"></span></span>
+            </div>
+            <div class="crew-member">
+              <span class="crew-name" id="player-four-name"></span>: <span class="crew-status" id="player-four-status"></span>
+              <div id="char4-health-bar" class="health-bar"><div class="health-fill"></div></div>
+              <span class="crew-cond">Cond: <span id="player-four-illness"></span></span>
+            </div>
+            <div class="crew-member">
+              <span class="crew-name" id="player-five-name"></span>: <span class="crew-status" id="player-five-status"></span>
+              <div id="char5-health-bar" class="health-bar"><div class="health-fill"></div></div>
+              <span class="crew-cond">Cond: <span id="player-five-illness"></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- supplies + actions bar -->
+      <div id="game-bottom-bar">
+        <div id="crew-supplies">
+          <div class="supply-item">
+            <img src="img/restaurant.png" alt="rations">
+            <p><span id="vehicle-food-remaining"></span> lbs</p>
+          </div>
+          <div class="supply-item">
+            <img src="img/bullet.png" alt="ammo">
+            <p><span id="vehicle-bullets-remaining"></span> rds</p>
+          </div>
+          <div class="supply-item">
+            <img src="img/money-bag.png" alt="crypto">
+            <p>₿<span class="vehicle-money-remaining"></span></p>
+          </div>
+          <div class="supply-item">
+            <p class="supply-emoji">🛞</p>
+            <p><span id="vehicle-tires-remaining"></span></p>
+          </div>
+          <div class="supply-item">
+            <p class="supply-emoji">🩹</p>
+            <p><span id="vehicle-meds-remaining"></span></p>
+          </div>
+        </div>
+        <div id="crew-actions">
+          <span id="rest-button" class="btn btn-info">Rest</span>
+          <span id="continue-button" class="btn btn-success">Drive</span>
+          <span id="hunt-button" class="btn btn-danger">Scavenge</span>
+          <span id="medkit-button" class="btn btn-warning">Use Med Kit</span>
+        </div>
+      </div>
+
+      <p id="progress-title">Escape progress:</p>
+      <div id="progressbar"><div id="progressbar-fill"></div></div>
+    </div>
+
+  </div>
+
+  <!-- The Modal (info / event) -->
+  <div id="myModal" class="modal">
+    <div class="modal-child"></div>
+  </div>
+
+  <!-- The Modal (choices / win) -->
+  <div id="buttonModal" class="modal2">
+    <div class="modal-child">
+      <div class="button-content"></div>
+      <div class="buttons">
+        <span id="option1-button" class="btn btn-success">Option 1</span>
+        <span id="option2-button" class="btn btn-success">Option 2</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
