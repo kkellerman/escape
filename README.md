@@ -3,7 +3,7 @@
 
 ## Description
 
-Recreation with some artistic license of a historical simulation game of the 16-bit era. Includes customized bad, good, and neutral events, various illnesses, landmarks, and pick your own adventure options
+Recreation with some artistic license of a historical simulation game of the 16-bit era. Includes customized bad, good, and neutral events, various illnesses, landmarks, and pick your own adventure options.
 
 
 ## Setup/Contribution Requirements
@@ -27,4 +27,4 @@ Recreation with some artistic license of a historical simulation game of the 16-
 
 This software is licensed under the MIT license.
 
-Copyright (c) 2026 
+Copyright (c) 2026
