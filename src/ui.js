@@ -173,12 +173,17 @@ export function showWinModal(score, destination) {
   document.getElementById('buttonModal').style.display = 'block';
 }
 
+function resolveImageSrc(imagePath) {
+  return imagePath.includes('.') ? `img/${imagePath}` : `img/${imagePath}.jpg`;
+}
+
 export function showChoiceModal(imageSrc, btn1Id, btn2Id, btn1Label, btn2Label, message, btn3 = null) {
   const btn3Html = btn3
     ? `<span id="${btn3.id}Button" class="btn btn-danger">${btn3.label}</span>`
     : '';
+  const src = resolveImageSrc(imageSrc);
   document.querySelector('#buttonModal .modal-child').innerHTML =
-    `<img src="img/${imageSrc}.jpg" alt="">
+    `<img src="${src}" alt="">
     <div id="popup-text" class="button-content">
       <div class="buttons">
         <span id="${btn1Id}Button" class="btn btn-success">${btn1Label}</span>

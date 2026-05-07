@@ -10,17 +10,22 @@ export class Character {
   // Returns a message string if a condition was contracted, otherwise null
   illnessGenerator() {
     const num = Math.floor(Math.random() * 80);
-    const illnessMap = {
+    const humanIllnesses = {
       1: 'Radiation Sickness',
       2: 'Infected Wound',
       3: 'Fever',
       4: 'Stomach Bug',
       5: 'Fracture'
     };
+    const petIllnesses = {
+      1: 'Threw Up',
+      2: 'Lethargic'
+    };
+    const illnessMap = this.isPet ? petIllnesses : humanIllnesses;
     const illness = illnessMap[num];
     if (illness && !this.illness.includes(illness)) {
       this.illness.push(illness);
-      return `${this.name} contracted ${illness}`;
+      return `${this.name} ${this.isPet ? 'is' : 'contracted'} ${illness}`;
     }
     return null;
   }

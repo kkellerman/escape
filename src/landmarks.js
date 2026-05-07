@@ -9,7 +9,7 @@ export function landmarkEvent() {
   if (dist === mark(0.2)) {
     return {
       type: 'river',
-      image: 'events/100',
+      image: 'events/grapevine.png',
       btn1: { id: 'crossRiver', label: 'Bluff It' },
       btn2: { id: 'detourRiver', label: 'Detour' },
       message: "CARB enforcement units are scanning vehicles on the Grapevine. You can attempt to bluff through the checkpoint or take a back-road detour through the mountains (7 days)."
