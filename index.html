@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Escape From Cali</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="img/ui/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=Londrina+Solid:300,400,900" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link href="css/styles.css" rel="stylesheet">
@@ -11,6 +12,14 @@
   <audio id="shotgun-fire" src="sounds/shotgun.mp3" preload="auto"></audio>
   <audio id="shotgun-dry" src="sounds/dry-fire.mp3" preload="auto"></audio>
   <audio id="openingSong" src="sounds/dystopian-ambient.mp3" preload="auto"></audio>
+  <audio id="prof-gavel" src="sounds/prof-gavel.mp3" preload="auto"></audio>
+  <audio id="prof-car-door" src="sounds/prof-car-door.mp3" preload="auto"></audio>
+  <audio id="dev-keyboard" src="sounds/dev-keyboard.mp3" preload="auto"></audio>
+  <audio id="dev-mac-chime" src="sounds/dev-mac-chime.mp3" preload="auto"></audio>
+  <audio id="dev-developers" src="sounds/dev-developers.mp3" preload="auto"></audio>
+  <audio id="wage-trombone" src="sounds/wage-trombone.mp3" preload="auto"></audio>
+  <audio id="wage-timeclock" src="sounds/wage-timeclock.mp3" preload="auto"></audio>
+  <audio id="wage-help-you" src="sounds/wage-help-you.mp3" preload="auto"></audio>
   <script type="module" src="/src/main.js"></script>
 </head>
 <body>
@@ -37,15 +46,15 @@
             <p>Select your class</p>
             <div class="prettyColumn">
               <div id="radio1">
-                <label><input type="radio" name="profession" value="1" checked> Professional</label>
+                <label><input type="radio" name="profession" value="1" checked> &#x2696;&#xFE0F; Professional</label>
                 <span class="tooltiptext">Attorney / Doctor / Executive. Starts with &#x20BF;1300 and no rations.</span>
               </div>
               <div id="radio2">
-                <label><input type="radio" name="profession" value="2"> Software Dev</label>
+                <label><input type="radio" name="profession" value="2"> &#x1F4BB; Software Dev</label>
                 <span class="tooltiptext">Remote work bought you options. Starts with &#x20BF;900 and 100 lbs of rations.</span>
               </div>
               <div id="radio3">
-                <label><input type="radio" name="profession" value="3"> Wage Slave</label>
+                <label><input type="radio" name="profession" value="3"> &#x1F3F7;&#xFE0F; Wage Slave</label>
                 <span class="tooltiptext">No savings, no plan. Just survival instinct. Starts with &#x20BF;550.</span>
               </div>
             </div>
@@ -148,7 +157,7 @@
           <span id="vehicleBTN" class="btn btn-danger">Roll Out</span>
         </div>
         <div class="col-md-7">
-          <img src="img/vehicle/jeep_final.gif" id="vehicle-select-img" alt="4x4 Jeep">
+          <img src="img/vehicle/jeep_final_idle.gif" id="vehicle-select-img" alt="4x4 Jeep">
         </div>
       </div>
     </div>
@@ -228,7 +237,7 @@
 
       <!-- vehicle panel -->
       <div id="vehicle-images">
-        <img src="img/vehicle/jeep_final.gif" id="jeep-main" alt="convoy">
+        <img src="img/vehicle/jeep_final_idle.gif" id="jeep-main" alt="convoy">
         <img src="img/vehicle/jeep_wheel.svg"  id="wheel-anim" alt="wheel">
         <img src="img/vehicle/jesus.svg"      id="jesus" alt="jesus">
         <img src="img/vehicle/shining.svg"    id="star"  alt="star">

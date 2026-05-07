@@ -20,6 +20,19 @@ export function initHandlers() {
     ui.showScreen('characterInput', 500);
   });
 
+  // Profession radio — play a random class-themed sound on selection
+  const PROF_SOUNDS = {
+    '1': ['prof-gavel', 'prof-car-door'],
+    '2': ['dev-keyboard', 'dev-mac-chime', 'dev-developers'],
+    '3': ['wage-trombone', 'wage-timeclock', 'wage-help-you'],
+  };
+  document.querySelectorAll('input[name="profession"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      const pool = PROF_SOUNDS[radio.value];
+      if (pool) ui.playSound(pool[Math.floor(Math.random() * pool.length)]);
+    });
+  });
+
   // Class + party naming → destination selection
   document.getElementById('characterBTN').addEventListener('click', onCharacterSubmit);
 
@@ -203,6 +216,9 @@ function onStoreBuy() {
 function onContinue() {
   ui.disableButton('continue-button', '#4a7c59');
   setTimeout(() => ui.enableButton('continue-button', '#28a745'), 500);
+
+  ui.setJeepMoving();
+  setTimeout(() => ui.setJeepIdle(), 800);
 
   const { vehicle, allChars } = getState();
   const results = vehicle.turn();

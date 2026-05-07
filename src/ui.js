@@ -283,6 +283,16 @@ export function cycleVehicleImage(state) {
   state.vehicleImageIndex = next;
 }
 
+// ─── Jeep driving state ───────────────────────────────────────────────────────
+
+export function setJeepMoving() {
+  document.getElementById('jeep-main').src = 'img/vehicle/jeep_final_mov.gif';
+}
+
+export function setJeepIdle() {
+  document.getElementById('jeep-main').src = 'img/vehicle/jeep_final_idle.gif';
+}
+
 // ─── Route map modal ──────────────────────────────────────────────────────────
 
 // Route waypoints as % of image [startX, startY, endX, endY]
