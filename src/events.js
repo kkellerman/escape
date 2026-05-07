@@ -91,7 +91,7 @@ export function deathEvent() {
     char.status = 'Dead';
     return {
       message: `A state drone misidentified ${char.name} as a hostile target. They were shot without warning.`,
-      modalImage: '1'
+      modalImage: 'events/1'
     };
   } else if (num === 2 && char.illness.includes('Radiation Sickness') && char.health < 65) {
     char.health = 0;
@@ -102,7 +102,7 @@ export function deathEvent() {
     }
     return {
       message: `${char.name} contracted a mutated fungal infection from the Cali water supply. It spread to ${vehicle.characters[0] ? vehicle.characters[0].name : 'the group'}. ${char.name} is dead.`,
-      modalImage: '2'
+      modalImage: 'events/2'
     };
   } else if (num === 3 && char.health < 65) {
     char.health = 0;
@@ -110,24 +110,51 @@ export function deathEvent() {
     vehicle.money -= vehicle.money * 0.25;
     return {
       message: `${char.name} secretly consumed the crypto cold wallet. Hardware wallet destroyed. You lose 25% of your ₿.`,
-      modalImage: '3'
+      modalImage: 'events/3'
     };
   } else if (num === 4) {
     const lost = (vehicle.food * 0.5).toFixed(2);
     vehicle.food -= vehicle.food * 0.5;
     return {
       message: `${char.name} raided the emergency ration stash at 3am and ate everything. You lose ${lost} lbs of rations.`,
-      modalImage: '4'
+      modalImage: 'events/4'
     };
   } else if (num === 5 && char.illness[0] === 'Infected Wound') {
     char.health = 0;
     char.status = 'Dead';
     return {
       message: `${char.name} tried to barter passage with a Sinaloa checkpoint. They didn't make it back.`,
-      modalImage: '5'
+      modalImage: 'events/5'
     };
   }
   return null;
+}
+
+export function weatherEvent(vehicle) {
+  const num = Math.floor(Math.random() * 3);
+
+  if (num === 0) {
+    // Heatwave — burns rations faster
+    const lost = Math.floor(vehicle.characters.length * 5 * 1.5);
+    vehicle.food = Math.max(0, vehicle.food - lost);
+    return { message: `A brutal heatwave slows the convoy. Rations spoil faster in the heat — ${lost} lbs lost.` };
+  } else if (num === 1) {
+    // Rainstorm — adds a travel day
+    vehicle.days += 1;
+    vehicle.food -= vehicle.dailyFoodCost();
+    vehicle.resourceChecker();
+    return { message: 'A heavy rainstorm washes out the road. The convoy shelters for a day before pushing on.' };
+  } else {
+    // Snowstorm — damages health and adds delay
+    const index = Math.floor(Math.random() * vehicle.characters.length);
+    const char = vehicle.characters[index];
+    char.health -= 12;
+    vehicle.days += 1;
+    vehicle.food -= vehicle.dailyFoodCost();
+    vehicle.resourceChecker();
+    vehicle.statusAdjuster();
+    return { message: `A mountain snowstorm hits without warning. ${char.name} suffers exposure. The convoy loses a day digging out.` };
+  }
 }
 
 export function antifaEvent() {

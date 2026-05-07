@@ -27,11 +27,15 @@ export function renderPlayerStatus(allChars, vehicle) {
   const slots = ['one', 'two', 'three', 'four', 'five'];
   allChars.forEach((char, i) => {
     const nameEl = document.getElementById(`player-${slots[i]}-name`);
-    nameEl.textContent = char.name;
+    const isDead = char.status === 'Dead';
+    nameEl.textContent = (isDead ? '💀 ' : '') + char.name;
     document.getElementById(`player-${slots[i]}-status`).textContent = char.status;
-    document.getElementById(`player-${slots[i]}-illness`).textContent = char.illness.length;
+    const illnessEl = document.getElementById(`player-${slots[i]}-illness`);
+    illnessEl.textContent = char.illness.length > 0
+      ? '🤒 ' + char.illness.length
+      : '0';
     const member = nameEl.closest('.crew-member');
-    if (member) member.classList.toggle('crew-dead', char.status === 'Dead');
+    if (member) member.classList.toggle('crew-dead', isDead);
   });
   document.getElementById('vehicle-food-remaining').textContent = vehicle.food.toFixed(0);
   document.querySelectorAll('.vehicle-money-remaining').forEach(el => { el.textContent = vehicle.money.toFixed(2); });
@@ -122,7 +126,7 @@ export function hideInfoModal() {
 
 export function showGameOverModal() {
   document.querySelector('#myModal .modal-child').innerHTML =
-    `<img src="img/dead.jpg" alt="">
+    `<img src="img/events/dead.jpg" alt="">
     <div id="popup-text" class="button-content">
       <div class="buttons">
         <span id="deathButton" class="btn btn-danger">Try Again</span>
@@ -132,17 +136,38 @@ export function showGameOverModal() {
   document.getElementById('myModal').style.display = 'block';
 }
 
+function saveHighScore(score, destination) {
+  const destName = DEST_NAMES[destination] || 'Freedom';
+  const scores = JSON.parse(localStorage.getItem('escapeHighScores') || '[]');
+  scores.push({ score: parseInt(score), dest: destName, date: new Date().toLocaleDateString() });
+  scores.sort((a, b) => b.score - a.score);
+  scores.splice(5);
+  localStorage.setItem('escapeHighScores', JSON.stringify(scores));
+  return scores;
+}
+
+function buildHighScoreTable(scores) {
+  if (!scores.length) return '<p>No scores yet.</p>';
+  return `<table style="width:100%;font-size:13px;margin-top:8px">
+    <tr><th>#</th><th>Score</th><th>Destination</th><th>Date</th></tr>
+    ${scores.map((s, i) => `<tr><td>${i + 1}</td><td>${s.score}</td><td>${s.dest}</td><td>${s.date}</td></tr>`).join('')}
+  </table>`;
+}
+
 export function showWinModal(score, destination) {
   const destName = DEST_NAMES[destination] || 'Freedom';
+  const scores = saveHighScore(score, destination);
   document.querySelector('#buttonModal .modal-child').innerHTML =
-    `<img src="img/500.jpg" alt="">
+    `<img src="img/events/500.jpg" alt="">
     <div id="popup-text" class="button-content">
       <div class="buttons">
         <span id="winButton" class="btn btn-success">Play Again</span>
       </div>
     </div>`;
   document.querySelector('#buttonModal .button-content').insertAdjacentHTML('afterbegin',
-    `<h4>YOU ESCAPED TO ${destName.toUpperCase()}!</h4>Escape score: ${score}`
+    `<h4>YOU ESCAPED TO ${destName.toUpperCase()}!</h4>
+     <p>Escape score: <strong>${score}</strong></p>
+     <h5>Top Scores</h5>${buildHighScoreTable(scores)}`
   );
   document.getElementById('buttonModal').classList.add('confetti');
   document.getElementById('buttonModal').style.display = 'block';

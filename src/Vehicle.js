@@ -1,4 +1,4 @@
-import { positiveEvent, neutralEvent, negativeEvent, deathEvent, antifaEvent } from './events.js';
+import { positiveEvent, neutralEvent, negativeEvent, deathEvent, antifaEvent, weatherEvent } from './events.js';
 import { landmarkEvent } from './landmarks.js';
 import { getState } from './state.js';
 
@@ -68,6 +68,7 @@ export class Vehicle {
     if (num >= 40) return tag(negativeEvent(), 'negative');
     if (num >= 35) return tag(deathEvent(), 'death');
     if (num >= 28) return antifaEvent();
+    if (num >= 20) return tag(weatherEvent(this), 'negative');
     return null;
   }
 
@@ -134,7 +135,7 @@ export class Vehicle {
   // Returns array of result objects
   huntingTime() {
     if (this.hunted === 1) {
-      return [{ type: 'alreadyHunted', message: "You've already scavenged today. Drive further before stopping again.", modalImage: 'scavenge.png', sound: 'shotgun-dry' }];
+      return [{ type: 'alreadyHunted', message: "You've already scavenged today. Drive further before stopping again.", modalImage: 'ui/scavenge.png', sound: 'shotgun-dry' }];
     }
 
     if (this.bullets <= 0) {
@@ -149,7 +150,7 @@ export class Vehicle {
     this.hunted = 1;
 
     if (hunt === 0) {
-      return [{ type: 'huntFail', message: 'You came back empty-handed. The convoy is not impressed.', modalImage: 'huntFail' }];
+      return [{ type: 'huntFail', message: 'You came back empty-handed. The convoy is not impressed.', modalImage: 'events/huntFail' }];
     }
 
     return [{ type: 'huntSuccess', message: `You scavenged ${hunt} lbs of rations.`, sound: 'shotgun-fire' }];

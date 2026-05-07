@@ -1,6 +1,6 @@
 body {
   min-height: 100vh;
-  background-image: url(/img/topography.png);
+  background-image: url(/img/ui/topography.png);
   font-family: 'Londrina Solid', cursive;
   display: flex;
   justify-content: center;

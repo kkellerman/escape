@@ -9,7 +9,7 @@ export function landmarkEvent() {
   if (dist === mark(0.2)) {
     return {
       type: 'river',
-      image: 100,
+      image: 'events/100',
       btn1: { id: 'crossRiver', label: 'Bluff It' },
       btn2: { id: 'detourRiver', label: 'Detour' },
       message: "CARB enforcement units are scanning vehicles on the Grapevine. You can attempt to bluff through the checkpoint or take a back-road detour through the mountains (7 days)."
@@ -17,13 +17,13 @@ export function landmarkEvent() {
   } else if (dist === mark(0.4)) {
     return {
       type: 'store',
-      image: 'campStore',
+      image: 'events/campStore',
       message: 'Your convoy stumbles on an abandoned REI distribution center. Grab what you need.'
     };
   } else if (dist === mark(0.6)) {
     return {
       type: 'cannibal',
-      image: 300,
+      image: 'events/300',
       btn1: { id: 'sacrifice', label: 'Leave One' },
       btn2: { id: 'flee', label: 'Run It' },
       message: "A Sinaloa convoy blocks the road. Their leader steps forward: 'Leave one of yours and the rest drive on. Your call.'"
@@ -31,7 +31,7 @@ export function landmarkEvent() {
   } else if (dist === mark(0.8)) {
     return {
       type: 'store',
-      image: 'generalStore',
+      image: 'events/generalStore',
       message: 'A border town trading post — last resupply before free territory. Stock up.'
     };
   } else if (dist === mark(1.0)) {
@@ -73,14 +73,14 @@ export function crossRiver() {
     vehicle.statusAdjuster();
     return {
       message: `${char.name} was flagged. The agents beat the convoy and seized ${foodLost} lbs of rations and ₿${moneyLost}.`,
-      modalImage: 'riverFail'
+      modalImage: 'events/riverFail'
     };
   } else {
     vehicle.days += 1;
     vehicle.food -= vehicle.characters.length * 5;
     vehicle.resourceChecker();
     vehicle.statusAdjuster();
-    return { message: "You talked your way through. The agent didn't check the back.", modalImage: 'riverWin' };
+    return { message: "You talked your way through. The agent didn't check the back.", modalImage: 'events/riverWin' };
   }
 }
 
@@ -152,7 +152,7 @@ export function fightAntifa() {
     vehicle.statusAdjuster();
     return {
       message: `You pushed through but they fought back. ${char.name} took hits and you lost ${foodLost} lbs of rations pulled from the truck bed before you broke free.`,
-      modalImage: 'fleeFail'
+      modalImage: 'events/fleeFail'
     };
   } else {
     vehicle.days += 1;
@@ -180,7 +180,7 @@ export function flee() {
     vehicle.statusAdjuster();
     return {
       message: `They caught ${char.name} before you cleared the roadblock. We can only guess what happened next.`,
-      modalImage: 'fleeFail'
+      modalImage: 'events/fleeFail'
     };
   } else {
     vehicle.days += 1;

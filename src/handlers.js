@@ -72,7 +72,7 @@ export function initHandlers() {
   document.getElementById('medkit-button').addEventListener('click', onMedKit);
 
   // Destination map preview
-  const DEST_IMAGES = { '1': 'panhandle.png', '2': 'montana.png', '3': 'wyoming.png' };
+  const DEST_IMAGES = { '1': 'maps/panhandle.png', '2': 'maps/montana.png', '3': 'maps/wyoming.png' };
   document.querySelectorAll('input[name="destination"]').forEach(radio => {
     radio.addEventListener('change', () => {
       document.getElementById('dest-map').src = `img/${DEST_IMAGES[radio.value]}`;
@@ -88,6 +88,19 @@ export function initHandlers() {
 
   // Skull button — restart
   document.getElementById('sacrifice').addEventListener('click', () => location.reload());
+
+  // Keyboard shortcuts (only active during gameplay)
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('gameMainScreen').style.display ||
+        document.getElementById('gameMainScreen').style.display === 'none') return;
+    if (e.target.tagName === 'INPUT') return;
+    switch (e.key.toUpperCase()) {
+      case 'D': document.getElementById('continue-button').click(); break;
+      case 'R': document.getElementById('rest-button').click();     break;
+      case 'S': document.getElementById('hunt-button').click();     break;
+      case 'M': document.getElementById('map-button').click();      break;
+    }
+  });
 
   // Delegated clicks for dynamically-created modal buttons
   document.addEventListener('click', onDocumentClick);
@@ -247,7 +260,7 @@ function handleResult(result, vehicle, allChars) {
   } else if (result.type === 'antifa') {
     setState({ antifaTax: result.tax });
     ui.showChoiceModal(
-      'fleeFail',
+      'events/fleeFail',
       result.btn1.id,
       result.btn2.id,
       result.btn1.label,
