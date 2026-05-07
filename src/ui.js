@@ -99,8 +99,15 @@ export function hideScreen(id) {
 // ─── Modals ───────────────────────────────────────────────────────────────────
 
 export function showInfoModal(imagePath) {
+  const src = imagePath.includes('.') ? `img/${imagePath}` : `img/${imagePath}.jpg`;
   document.querySelector('#myModal .modal-child').innerHTML =
-    `<img src="img/${imagePath}.jpg" alt=""><div id="popup-text" class="ongoing-events"></div>`;
+    `<img src="${src}" alt=""><div id="popup-text" class="ongoing-events"></div>`;
+  document.getElementById('myModal').style.display = 'block';
+}
+
+export function showTextModal(message) {
+  document.querySelector('#myModal .modal-child').innerHTML =
+    `<div id="popup-text" class="ongoing-events" style="padding:30px;font-size:18px;">${message}</div>`;
   document.getElementById('myModal').style.display = 'block';
 }
 
@@ -178,13 +185,15 @@ export async function triggerWheelAnimation() {
   const show = el => { el.style.display = 'block'; };
   const hide = el => { el.style.display = 'none'; };
 
+  wheelEl.classList.add('rolling');
   show(wheelEl);
   await pause(750);
   hide(wheelEl);
+  wheelEl.classList.remove('rolling');
   await pause(400); show(document.getElementById('jesus'));
   await pause(5000); hide(document.getElementById('jesus'));
-  show('star');
-  await pause(500); hide('star');
+  show(document.getElementById('star'));
+  await pause(500); hide(document.getElementById('star'));
 }
 
 // ─── Vehicle image cycling ────────────────────────────────────────────────────
@@ -218,7 +227,21 @@ export function cycleVehicleImage(state) {
   const images = document.getElementById('vehicle-images');
   const jeep   = document.getElementById('jeep-main');
 
-  jeep.style.left = JEEP_POSITIONS[next];
+  if (next === 1) {
+    // Reset: fade out, reposition, fade back in
+    jeep.style.transition = 'opacity 150ms ease-out';
+    jeep.style.opacity = '0';
+    setTimeout(() => {
+      jeep.style.transition = 'none';
+      jeep.style.left = JEEP_POSITIONS[next];
+      jeep.offsetHeight;
+      jeep.style.transition = 'opacity 150ms ease-in';
+      jeep.style.opacity = '1';
+      setTimeout(() => { jeep.style.transition = ''; }, 150);
+    }, 150);
+  } else {
+    jeep.style.left = JEEP_POSITIONS[next];
+  }
 
   const dist = state.vehicle ? state.vehicle.distance : 0;
   const goal = state.goalDistance || 500;

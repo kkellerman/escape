@@ -52,6 +52,13 @@ export function initHandlers() {
   // Store buy
   document.getElementById('storeBTN').addEventListener('click', onStoreBuy);
 
+  // Store exit — leave without buying
+  document.getElementById('store-exit-button').addEventListener('click', () => {
+    document.getElementById('openingSong').pause();
+    ui.hideScreen('store');
+    ui.showScreen('gameMainScreen', 500);
+  });
+
   // Back from initial supply store to kit selection
   document.getElementById('back-button').addEventListener('click', () => {
     ui.hideScreen('store');
@@ -161,6 +168,7 @@ function onStoreBuy() {
 
   if (!result.success) {
     ui.shakeElement('#store');
+    if (result.reason) ui.showTextModal(result.reason);
     return;
   }
 

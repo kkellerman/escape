@@ -134,7 +134,7 @@ export class Vehicle {
   // Returns array of result objects
   huntingTime() {
     if (this.hunted === 1) {
-      return [{ type: 'alreadyHunted', message: "You've already scavenged today. Drive further before stopping again.", modalImage: '1', sound: 'shotgun-dry' }];
+      return [{ type: 'alreadyHunted', message: "You've already scavenged today. Drive further before stopping again.", modalImage: 'scavenge.png', sound: 'shotgun-dry' }];
     }
 
     if (this.bullets <= 0) {

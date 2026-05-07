@@ -1,0 +1,164 @@
+/* ── Start screen icon animation ────────────────────────────────────────── */
+
+.icon-animate {
+  width: 64px;
+  height: 64px;
+  position: absolute;
+  bottom: 50%;
+  left: 5%;
+  background-image: url(/img/beans.png);
+  background-size: cover;
+  animation: example 40s linear 0s infinite reverse;
+  -moz-animation: 40s linear 0s reverse none infinite example;
+  -webkit-animation: example 40s linear 0s infinite reverse;
+}
+
+@-webkit-keyframes example {
+  0%   { left:5%;  bottom:50%; transform:rotate(0deg);   background-image: url(/img/beans.png); }
+  10%  { left:90%; bottom:25%; transform:rotate(360deg); background-image: url(/img/beans.png); }
+  20%  { left:5%;  bottom:45%; transform:rotate(0deg);   background-image: url(/img/boots.png); }
+  30%  { left:90%; bottom:75%; transform:rotate(360deg); background-image: url(/img/boots.png); }
+  40%  { left:5%;  bottom:55%; transform:rotate(0deg);   background-image: url(/img/gun.png); }
+  50%  { left:90%; bottom:25%; transform:rotate(360deg); background-image: url(/img/gun.png); }
+  60%  { left:5%;  bottom:45%; transform:rotate(0deg);   background-image: url(/img/whisky.png); }
+  70%  { left:90%; bottom:65%; transform:rotate(360deg); background-image: url(/img/whisky.png); }
+  80%  { left:5%;  bottom:35%; transform:rotate(0deg);   background-image: url(/img/redoubt.png); }
+  90%  { left:90%; bottom:25%; transform:rotate(360deg); background-image: url(/img/redoubt.png); }
+  100% { left:5%;  bottom:50%; transform:rotate(0deg);   background-image: url(/img/beans.png); }
+}
+
+@keyframes example {
+  0%   { left:5%;  bottom:50%; transform:rotate(0deg);   background-image: url(/img/beans.png); }
+  10%  { left:90%; bottom:25%; transform:rotate(360deg); background-image: url(/img/beans.png); }
+  20%  { left:5%;  bottom:45%; transform:rotate(0deg);   background-image: url(/img/boots.png); }
+  30%  { left:90%; bottom:75%; transform:rotate(360deg); background-image: url(/img/boots.png); }
+  40%  { left:5%;  bottom:55%; transform:rotate(0deg);   background-image: url(/img/gun.png); }
+  50%  { left:90%; bottom:25%; transform:rotate(360deg); background-image: url(/img/gun.png); }
+  60%  { left:5%;  bottom:45%; transform:rotate(0deg);   background-image: url(/img/whisky.png); }
+  70%  { left:90%; bottom:65%; transform:rotate(360deg); background-image: url(/img/whisky.png); }
+  80%  { left:5%;  bottom:35%; transform:rotate(0deg);   background-image: url(/img/redoubt.png); }
+  90%  { left:90%; bottom:25%; transform:rotate(360deg); background-image: url(/img/redoubt.png); }
+  100% { left:5%;  bottom:50%; transform:rotate(0deg);   background-image: url(/img/beans.png); }
+}
+
+/* ── Start screen vehicle animation ────────────────────────────────────── */
+
+.icon-vehicle {
+  width: 120px;
+  height: 103px;
+  position: absolute;
+  bottom: 24%;
+  left: 5%;
+  background-image: url(/img/jeep_final.gif);
+  background-size: cover;
+  animation: vehiclewheel 40s linear 0s infinite reverse;
+  -moz-animation: 40s linear 0s reverse none infinite vehiclewheel;
+  -webkit-animation: vehiclewheel 40s linear 0s infinite reverse;
+}
+
+@-webkit-keyframes vehiclewheel {
+  0%   { left: 5%; }
+  50%  { left: 85%; }
+  100% { left: 5%; }
+}
+
+@keyframes vehiclewheel {
+  0%   { left: 5%; }
+  50%  { left: 85%; }
+  100% { left: 5%; }
+}
+
+/* ── Title effect ───────────────────────────────────────────────────────── */
+
+@-webkit-keyframes titleeffect {
+  0%   { font-size: 1px; }
+  100% { font-size: 75px; }
+}
+
+@keyframes titleeffect {
+  0%   { font-size: 1px; }
+  100% { font-size: 75px; }
+}
+
+/* ── Sky phases ─────────────────────────────────────────────────────────── */
+
+.sky1 { background-image: url(/img/la-start.png); }
+.sky2 { background-image: url(/img/la-start.png); }
+.sky3 { background-image: url(/img/la-start.png); }
+.sky4 { background-image: url(/img/la-start.png); }
+.sky5 { background-image: url(/img/la-start.png); }
+.sky6 { background-image: url(/img/la-start.png); }
+
+.sky-cali {
+  background-image:
+    linear-gradient(to bottom, rgba(181, 96, 26, 0.65) 0%, rgba(181, 96, 26, 0.2) 55%, transparent 100%),
+    url(/img/la-start.png);
+  background-color: #b5601a;
+}
+
+#vehicle-images.sky-cali::before,
+#vehicle-images.sky-cali::after {
+  content: '';
+  position: absolute;
+  bottom: 40%;
+  width: 18px;
+  height: 60px;
+  border-radius: 50% 50% 20% 20%;
+  background: rgba(60, 55, 50, 0.45);
+  filter: blur(6px);
+  animation: smokeRise 4s ease-out infinite;
+  z-index: 2;
+  pointer-events: none;
+}
+
+#vehicle-images.sky-cali::before {
+  left: 18%;
+  animation-duration: 3.5s;
+  animation-delay: 0s;
+}
+
+#vehicle-images.sky-cali::after {
+  left: 62%;
+  width: 24px;
+  height: 80px;
+  animation-duration: 5s;
+  animation-delay: 1.2s;
+}
+
+@keyframes smokeRise {
+  0%   { transform: translateY(0)    scaleX(1);   opacity: 0.6; }
+  50%  { transform: translateY(-30px) scaleX(1.4); opacity: 0.35; }
+  100% { transform: translateY(-65px) scaleX(1.8); opacity: 0; }
+}
+
+.sky-desert   { background-image: url(/img/mountains.png); background-color: #e8c870; }
+.sky-plateau  { background-image: url(/img/mountains.png); background-color: #5a9fd4; }
+.sky-mountain { background-image: url(/img/mountains.png); background-color: #3a70a8; }
+.sky-golden   { background-image: url(/img/mountains.png); background-color: #e08840; }
+.sky-dusk     { background-image: url(/img/mountains.png); background-color: #b04030; }
+.sky-night    { background-image: url(/img/mountains.png); background-color: #101828; }
+.sky-dawn     { background-image: url(/img/mountains.png); background-color: #7050a0; }
+.sky-idaho    { background-image: url(/img/mountains.png); background-color: #3a7850; }
+.sky-montana  { background-image: url(/img/mountains.png); background-color: #4a80a0; }
+.sky-wyoming  { background-image: url(/img/mountains.png); background-color: #c88040; }
+
+/* ── Wheel roll-off animation ───────────────────────────────────────────── */
+
+@keyframes wheelRollOff {
+  0%   { transform: translateX(0)    rotate(0deg);   opacity: 1; }
+  100% { transform: translateX(90px) rotate(540deg); opacity: 0; }
+}
+
+#wheel-anim.rolling {
+  animation: wheelRollOff 750ms ease-in forwards;
+}
+
+/* ── Shake (validation error) ───────────────────────────────────────────── */
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60%  { transform: translateX(-8px); }
+  40%, 80%  { transform: translateX(8px); }
+}
+
+.shake { animation: shake 0.6s ease; }

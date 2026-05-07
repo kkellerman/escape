@@ -1,0 +1,486 @@
+/* ── Vehicle panel ──────────────────────────────────────────────────────── */
+
+#vehicle-images {
+  background-size: cover;
+  background-position: bottom;
+  padding: 10px;
+  border: 2px solid black;
+  margin: 0;
+  width: 705px;
+  height: 151px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+#vehicle-images .col-md-2 {
+  padding: 0px 5px;
+}
+
+#jeep-main {
+  position: absolute;
+  bottom: 5px;
+  left: 78%;
+  height: 70px;
+  z-index: 1;
+  transition: left 500ms ease-in-out;
+}
+
+#wheel-anim {
+  display: none;
+  position: absolute;
+  bottom: 8px;
+  left: 78%;
+  z-index: 100;
+  height: 35px;
+}
+
+#wheel-6,
+#wheel-5,
+#wheel-4,
+#wheel-3,
+#wheel-2,
+#wheel-1 {
+  display: none;
+}
+
+#jesus {
+  display: none;
+  z-index: 50;
+  height: 90px;
+  margin-top: 20px;
+  margin-left: 20px;
+  position: absolute;
+}
+
+#star {
+  display: none;
+  z-index: 101;
+  position: absolute;
+  height: 20px;
+  margin-bottom: 105px;
+  margin-left: 15px;
+}
+
+/* ── Game header ────────────────────────────────────────────────────────── */
+
+#game-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+#game-header h1 {
+  margin: 0;
+  flex: 1;
+}
+
+#game-header #faq,
+#game-header #sacrifice-button {
+  position: static;
+  margin-left: 10px;
+}
+
+#faq img        { width: 32px; }
+#sacrifice-button { transition: all .2s ease-in-out; }
+#sacrifice-button img { width: 32px; }
+#sacrifice-button:hover { transform: scale(1.2); }
+
+#faq .tooltiptext,
+#sacrifice-button .tooltiptext {
+  visibility: hidden;
+  width: 331px;
+  background-color: black;
+  color: #fff;
+  text-align: left;
+  border-radius: 0px 17px 17px 17px;
+  padding: 16px;
+  margin-left: 35px;
+  margin-top: 2px;
+  position: absolute;
+  z-index: 1;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+#faq:hover .tooltiptext,
+#sacrifice-button:hover .tooltiptext {
+  visibility: visible;
+}
+
+#map-button {
+  margin-left: 10px;
+  cursor: pointer;
+  transition: all .2s ease-in-out;
+}
+
+#map-button img   { width: 32px; }
+#map-button:hover { transform: scale(1.2); }
+
+/* ── Two-column layout ──────────────────────────────────────────────────── */
+
+#game-main-columns {
+  margin: 8px 0 0 0;
+  height: 310px;
+  display: flex;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+#event-col {
+  padding-right: 8px;
+  height: 100%;
+}
+
+#event-col #ongoing-text-box {
+  height: 100%;
+  margin-top: 0;
+}
+
+#crew-col {
+  padding-left: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  height: 100%;
+}
+
+#crew-col h5 {
+  margin: 0;
+  font-size: 13px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 4px;
+}
+
+#turn-counter {
+  font-size: 11px;
+  color: #888;
+  margin: 2px 0 4px;
+}
+
+/* ── Crew chars ─────────────────────────────────────────────────────────── */
+
+#crew-chars {
+  background: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.crew-member {
+  margin-bottom: 3px;
+  font-size: 12px;
+}
+
+.crew-member:last-child {
+  margin-bottom: 0;
+}
+
+.crew-name { font-weight: bold; }
+
+.crew-cond {
+  font-size: 11px;
+  color: #666;
+}
+
+.crew-dead {
+  opacity: 0.4;
+  text-decoration: line-through;
+}
+
+.crew-dead .health-bar {
+  display: none;
+}
+
+/* ── Bottom bar ─────────────────────────────────────────────────────────── */
+
+#game-bottom-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #ccc;
+  background: #f2f2f2;
+  padding: 6px 8px;
+  margin-top: 6px;
+}
+
+#game-bottom-bar #crew-supplies {
+  display: flex;
+  flex: 1;
+  gap: 6px;
+  align-items: center;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+#game-bottom-bar #crew-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+#game-bottom-bar #crew-actions .btn {
+  width: auto;
+  padding: 4px 14px;
+}
+
+#crew-supplies {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #f2f2f2;
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.supply-item {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+}
+
+.supply-item img {
+  width: 26px;
+  display: block;
+  margin: 0 auto 2px;
+}
+
+.supply-item p {
+  margin: 0;
+  line-height: 1.2;
+}
+
+.supply-emoji {
+  font-size: 22px;
+  margin: 0;
+  line-height: 1;
+}
+
+#crew-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#crew-actions .btn { width: 100%; }
+
+/* ── Event log ──────────────────────────────────────────────────────────── */
+
+#ongoing-text-box {
+  background: #f2f2f2;
+  height: 220px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 8px;
+  padding: 10px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+#ongoing-text-box p:before {
+  content: "\2605";
+}
+
+#ongoing-text-box br {
+  line-height: 200%;
+}
+
+.event-positive { color: #28a745; }
+.event-neutral  { color: #555; }
+.event-negative { color: #e07020; }
+.event-death    { color: #c0392b; font-weight: bold; }
+.event-illness  { color: #8e44ad; }
+
+/* ── Progress bar ───────────────────────────────────────────────────────── */
+
+#progress-title {
+  margin-bottom: 0px;
+  margin-top: 15px;
+}
+
+#progressbar {
+  height: 3em;
+  background: #e0e0e0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+#progressbar-fill {
+  height: 100%;
+  background: #28a745;
+  width: 0%;
+  transition: width 0.4s ease;
+}
+
+/* ── Health bars ────────────────────────────────────────────────────────── */
+
+.health-bar {
+  height: 9px;
+  margin-bottom: 6px;
+  background: #e0e0e0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.health-fill {
+  height: 100%;
+  width: 100%;
+  background: #28a745;
+  transition: width 0.3s, background-color 0.3s;
+}
+
+/* ── Modals ─────────────────────────────────────────────────────────────── */
+
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover { opacity: 0.7; }
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 11%;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.modal2 {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#popup-text,
+.button-child {
+  background-color: white;
+  padding: 20px;
+  width: 50%;
+  max-width: 673px;
+  margin: 0 auto;
+  font-size: 22px;
+  text-align: center;
+}
+
+.modal-child,
+.button-child {
+  text-align: center;
+}
+
+.modal-child img {
+  width: 50%;
+  max-width: 673px;
+}
+
+/* ── Route map modal ────────────────────────────────────────────────────── */
+
+#mapModal {
+  position: fixed;
+  z-index: 200;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#map-modal-inner { text-align: center; }
+
+#route-map-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+#route-map-img {
+  max-width: 600px;
+  width: 90vw;
+  border: 3px solid white;
+}
+
+#route-marker {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: #e74c3c;
+  border: 2px solid white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 6px rgba(231,76,60,0.8);
+  transition: top 0.4s, left 0.4s;
+}
+
+#map-close-hint {
+  color: #ccc;
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+/* ── Tooltips (profession) ──────────────────────────────────────────────── */
+
+#profession #radio1,
+#profession #radio2,
+#profession #radio3,
+#profession #radio4,
+#profession #radio5,
+#profession #radio6 {
+  position: relative;
+}
+
+#supplies          { text-align: center; margin-top: 15px; }
+#supplies img      { width: 50px; }
+#supplies span     { font-size: 18px; }
+#supplies p        { margin-bottom: 5px; }
+#status-panel li   { margin-bottom: 3px; }
+
+#player-one-name,
+#player-two-name,
+#player-three-name,
+#player-four-name,
+#player-five-name {
+  font-weight: bold;
+}
+
+#gameMainScreen ul {
+  list-style: none;
+  margin: 10px 0;
+  padding-left: 0;
+}
+
+.confetti {
+  background-image: url('/img/fireworks.gif');
+  background-size: cover;
+}
