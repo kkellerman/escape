@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="img/ui/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=Londrina+Solid:300,400,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link href="css/styles.css" rel="stylesheet">
   <audio id="jesusSnatch" src="sounds/jesusWheel.mp3" preload="auto"></audio>
@@ -25,20 +26,27 @@
 <body>
   <div class="container">
 
-    <!-- â”€â”€ START SCREEN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <!-- START SCREEN -->
     <div id="characterSetup">
       <div id="start">
+        <div id="slideshow">
+          <div class="slide slide-1"></div>
+          <div class="slide slide-2"></div>
+          <div class="slide slide-3"></div>
+          <div class="slide-overlay"></div>
+        </div>
         <div class="main-title">
           <h1>Escape From Cali</h1>
         </div>
         <div class="icon-animate"></div>
         <div class="icon-vehicle"></div>
-        <img src="img/scenes/start-cover.jpg" alt="Los Angeles 2050">
-        <p class="start-tagline">Gavin Newsom's tax regime has broken the state.<br>Fortune 500 companies fled. Homelessness, crime, and cost of living have reached a breaking point.<br>Without rule of law, you're forced to relocate to greener pastures.</p>
-        <span id="startBTN" class="btn btn-danger">Escape</span>
+        <div class="start-bottom">
+          <p class="start-tagline">Gavin Newsom's tax regime has broken the state.<br>Fortune 500 companies fled. Homelessness, crime, and cost of living have reached a breaking point.<br>Without rule of law, you're forced to relocate to greener pastures.</p>
+          <span id="startBTN" class="btn btn-danger">ESCAPE!</span>
+        </div>
       </div>
 
-      <!-- â”€â”€ CLASS + PARTY NAMING â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+      <!-- CLASS + PARTY NAMING -->
       <div id="characterInput">
         <h1>Escape From Cali</h1>
         <div class="row">
@@ -47,15 +55,15 @@
             <div class="prettyColumn">
               <div id="radio1">
                 <label><input type="radio" name="profession" value="1" checked> &#x2696;&#xFE0F; Professional</label>
-                <span class="tooltiptext">Attorney / Doctor / Executive. Starts with &#x20BF;1300 and no rations.</span>
+                <span class="tooltiptext">Attorney / Doctor / Executive. Starts with &#x20BF;1300 and no rations. 1x score.</span>
               </div>
               <div id="radio2">
                 <label><input type="radio" name="profession" value="2"> &#x1F4BB; Software Dev</label>
-                <span class="tooltiptext">Remote work bought you options. Starts with &#x20BF;900 and 100 lbs of rations.</span>
+                <span class="tooltiptext">Remote work bought you options. Starts with &#x20BF;900 and 100 lbs of rations. 1.5x score multiplier.</span>
               </div>
               <div id="radio3">
                 <label><input type="radio" name="profession" value="3"> &#x1F3F7;&#xFE0F; Wage Slave</label>
-                <span class="tooltiptext">No savings, no plan. Just survival instinct. Starts with &#x20BF;550.</span>
+                <span class="tooltiptext">No savings, no plan. Just survival instinct. Starts with &#x20BF;550. 2x score multiplier.</span>
               </div>
             </div>
             <span id="characterBTN" class="btn btn-danger">Next</span>
@@ -83,7 +91,7 @@
       </div>
     </div>
 
-    <!-- â”€â”€ DESTINATION SELECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <!-- DESTINATION SELECTION -->
     <div id="destinationSelect">
       <h1>Choose Your Destination</h1>
       <p class="screen-subtitle">Where are you heading?</p>
@@ -111,7 +119,7 @@
       </div>
     </div>
 
-    <!-- â”€â”€ KIT SELECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <!-- KIT SELECTION -->
     <div id="kitSelect">
       <h1>Choose Your Kit</h1>
       <p class="screen-subtitle">What are you bringing?</p>
@@ -139,7 +147,7 @@
       </div>
     </div>
 
-    <!-- â”€â”€ VEHICLE SELECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <!-- VEHICLE SELECTION -->
     <div id="vehicleSelect">
       <h1>Choose Your Vehicle</h1>
       <p class="screen-subtitle">What are you driving out?</p>
@@ -162,7 +170,7 @@
       </div>
     </div>
 
-    <!-- â”€â”€ SUPPLY RUN (STORE) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <!-- SUPPLY RUN (STORE) -->
     <div id="store">
       <div class="store-fields">
         <div class="store-titles">
@@ -215,7 +223,7 @@
       </div>
     </div>
 
-    <!-- â”€â”€ MAIN GAMEPLAY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <!-- MAIN GAMEPLAY -->
     <div id="gameMainScreen">
 
       <!-- header -->
@@ -228,6 +236,10 @@
         <div id="map-button">
           <img src="img/ui/map.png" alt="Route Map">
           <p class="tooltiptext">Map position.</p>
+        </div>
+        <div id="sound-button">
+          <span id="sound-icon">🔊</span>
+          <p class="tooltiptext">Toggle sound on/off.</p>
         </div>
         <div id="sacrifice-button">
           <img id="sacrifice" src="img/ui/skull.png" alt="Abandon Escape">
@@ -349,4 +361,7 @@
   </div>
 </body>
 </html>
+
+
+
 

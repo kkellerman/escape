@@ -8,7 +8,7 @@ import * as ui from './ui.js';
 
 export function initHandlers() {
   // Initialize vehicle image sky class
-  document.getElementById('vehicle-images').classList.add('sky1');
+  document.getElementById('vehicle-images').classList.add('sky-cali');
 
   // Close #myModal when clicking anywhere on it
   document.getElementById('myModal').addEventListener('click', () => ui.hideInfoModal());
@@ -99,21 +99,14 @@ export function initHandlers() {
   });
   document.getElementById('mapModal').addEventListener('click', () => ui.hideMapModal());
 
+  // Sound toggle
+  document.getElementById('sound-button').addEventListener('click', () => ui.toggleSound());
+
   // Skull button — restart
   document.getElementById('sacrifice').addEventListener('click', () => location.reload());
 
   // Keyboard shortcuts (only active during gameplay)
-  document.addEventListener('keydown', e => {
-    if (!document.getElementById('gameMainScreen').style.display ||
-        document.getElementById('gameMainScreen').style.display === 'none') return;
-    if (e.target.tagName === 'INPUT') return;
-    switch (e.key.toUpperCase()) {
-      case 'D': document.getElementById('continue-button').click(); break;
-      case 'R': document.getElementById('rest-button').click();     break;
-      case 'S': document.getElementById('hunt-button').click();     break;
-      case 'M': document.getElementById('map-button').click();      break;
-    }
-  });
+  document.addEventListener('keydown', onGameplayKeydown);
 
   // Delegated clicks for dynamically-created modal buttons
   document.addEventListener('click', onDocumentClick);
@@ -146,6 +139,27 @@ function onCharacterSubmit() {
 
   ui.hideScreen('characterInput');
   ui.showScreen('destinationSelect', 500);
+}
+
+function onGameplayKeydown(e) {
+  const gameMainScreen = document.getElementById('gameMainScreen');
+  if (!gameMainScreen.style.display || gameMainScreen.style.display === 'none') return;
+  if (e.target.tagName === 'INPUT') return;
+
+  switch (e.key.toUpperCase()) {
+    case 'D':
+      document.getElementById('continue-button').click();
+      break;
+    case 'R':
+      document.getElementById('rest-button').click();
+      break;
+    case 'S':
+      document.getElementById('hunt-button').click();
+      break;
+    case 'M':
+      document.getElementById('map-button').click();
+      break;
+  }
 }
 
 // ─── Destination selection ────────────────────────────────────────────────────
@@ -276,7 +290,7 @@ function handleResult(result, vehicle, allChars) {
   } else if (result.type === 'antifa') {
     setState({ antifaTax: result.tax });
     ui.showChoiceModal(
-      'events/fleeFail',
+      'events/antifa-i5.png',
       result.btn1.id,
       result.btn2.id,
       result.btn1.label,

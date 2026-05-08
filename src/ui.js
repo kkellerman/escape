@@ -201,19 +201,35 @@ export function hideButtonModal() {
 
 // ─── Audio ────────────────────────────────────────────────────────────────────
 
+let soundEnabled = true;
+
+export function toggleSound() {
+  soundEnabled = !soundEnabled;
+  document.getElementById('sound-icon').textContent = soundEnabled ? '🔊' : '🔇';
+}
+
 export function playSound(id) {
+  if (!soundEnabled) return;
   const el = document.getElementById(id);
   if (el) el.play().catch(() => {});
 }
 
 // ─── Wheel-break animation ────────────────────────────────────────────────────
 
-const pause = ms => new Promise(r => setTimeout(r, ms));
+function pause(ms) {
+  return new Promise(function(resolve) {
+    setTimeout(resolve, ms);
+  });
+}
 
 export async function triggerWheelAnimation() {
   const wheelEl = document.getElementById('wheel-anim');
-  const show = el => { el.style.display = 'block'; };
-  const hide = el => { el.style.display = 'none'; };
+  function show(el) {
+    el.style.display = 'block';
+  }
+  function hide(el) {
+    el.style.display = 'none';
+  }
 
   wheelEl.classList.add('rolling');
   show(wheelEl);
@@ -258,6 +274,14 @@ export function cycleVehicleImage(state) {
   const jeep   = document.getElementById('jeep-main');
 
   if (next === 1) {
+    // Jeep completed a full run — now update the scene
+    const dist = state.vehicle ? state.vehicle.distance : 0;
+    const goal = state.goalDistance || 500;
+    const pct  = (dist / goal) * 100;
+    const phase = SKY_PHASES.find(p => pct <= p.maxPct) || SKY_PHASES[SKY_PHASES.length - 1];
+    images.classList.remove(...ALL_SKY);
+    images.classList.add(phase.cls);
+
     // Reset: fade out, reposition, fade back in
     jeep.style.transition = 'opacity 150ms ease-out';
     jeep.style.opacity = '0';
@@ -272,13 +296,6 @@ export function cycleVehicleImage(state) {
   } else {
     jeep.style.left = JEEP_POSITIONS[next];
   }
-
-  const dist = state.vehicle ? state.vehicle.distance : 0;
-  const goal = state.goalDistance || 500;
-  const pct  = (dist / goal) * 100;
-  const phase = SKY_PHASES.find(p => pct <= p.maxPct) || SKY_PHASES[SKY_PHASES.length - 1];
-  images.classList.remove(...ALL_SKY);
-  images.classList.add(phase.cls);
 
   state.vehicleImageIndex = next;
 }
