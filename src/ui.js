@@ -258,6 +258,14 @@ export function cycleVehicleImage(state) {
   const jeep   = document.getElementById('jeep-main');
 
   if (next === 1) {
+    // Jeep completed a full run — now update the scene
+    const dist = state.vehicle ? state.vehicle.distance : 0;
+    const goal = state.goalDistance || 500;
+    const pct  = (dist / goal) * 100;
+    const phase = SKY_PHASES.find(p => pct <= p.maxPct) || SKY_PHASES[SKY_PHASES.length - 1];
+    images.classList.remove(...ALL_SKY);
+    images.classList.add(phase.cls);
+
     // Reset: fade out, reposition, fade back in
     jeep.style.transition = 'opacity 150ms ease-out';
     jeep.style.opacity = '0';
@@ -272,13 +280,6 @@ export function cycleVehicleImage(state) {
   } else {
     jeep.style.left = JEEP_POSITIONS[next];
   }
-
-  const dist = state.vehicle ? state.vehicle.distance : 0;
-  const goal = state.goalDistance || 500;
-  const pct  = (dist / goal) * 100;
-  const phase = SKY_PHASES.find(p => pct <= p.maxPct) || SKY_PHASES[SKY_PHASES.length - 1];
-  images.classList.remove(...ALL_SKY);
-  images.classList.add(phase.cls);
 
   state.vehicleImageIndex = next;
 }

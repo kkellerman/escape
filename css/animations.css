@@ -82,22 +82,41 @@
 
 /* â”€â”€ Sky phases â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
-.sky1 { background-image: url(/img/scenes/la-start.png); }
-.sky2 { background-image: url(/img/scenes/la-start.png); }
-.sky3 { background-image: url(/img/scenes/la-start.png); }
-.sky4 { background-image: url(/img/scenes/la-start.png); }
-.sky5 { background-image: url(/img/scenes/la-start.png); }
-.sky6 { background-image: url(/img/scenes/la-start.png); }
+@keyframes smogPulse {
+  0%   { background-color: #b5601a; }
+  30%  { background-color: #8b2500; }
+  60%  { background-color: #c4881a; }
+  80%  { background-color: #a83222; }
+  100% { background-color: #b5601a; }
+}
+
+.sky1, .sky2, .sky3, .sky4, .sky5, .sky6 {
+  background-image: url(/img/scenes/la-start.png);
+  background-color: #b5601a;
+  animation: smogPulse 10s ease-in-out infinite;
+}
 
 .sky-cali {
   background-image:
     linear-gradient(to bottom, rgba(181, 96, 26, 0.65) 0%, rgba(181, 96, 26, 0.2) 55%, transparent 100%),
     url(/img/scenes/la-start.png);
-  background-color: #b5601a;
+  animation: smogPulse 10s ease-in-out infinite;
 }
 
 #vehicle-images.sky-cali::before,
-#vehicle-images.sky-cali::after {
+#vehicle-images.sky-cali::after,
+#vehicle-images.sky1::before,
+#vehicle-images.sky1::after,
+#vehicle-images.sky2::before,
+#vehicle-images.sky2::after,
+#vehicle-images.sky3::before,
+#vehicle-images.sky3::after,
+#vehicle-images.sky4::before,
+#vehicle-images.sky4::after,
+#vehicle-images.sky5::before,
+#vehicle-images.sky5::after,
+#vehicle-images.sky6::before,
+#vehicle-images.sky6::after {
   content: '';
   position: absolute;
   bottom: 40%;
@@ -111,13 +130,19 @@
   pointer-events: none;
 }
 
-#vehicle-images.sky-cali::before {
+#vehicle-images.sky-cali::before,
+#vehicle-images.sky1::before, #vehicle-images.sky2::before,
+#vehicle-images.sky3::before, #vehicle-images.sky4::before,
+#vehicle-images.sky5::before, #vehicle-images.sky6::before {
   left: 18%;
   animation-duration: 3.5s;
   animation-delay: 0s;
 }
 
-#vehicle-images.sky-cali::after {
+#vehicle-images.sky-cali::after,
+#vehicle-images.sky1::after, #vehicle-images.sky2::after,
+#vehicle-images.sky3::after, #vehicle-images.sky4::after,
+#vehicle-images.sky5::after, #vehicle-images.sky6::after {
   left: 62%;
   width: 24px;
   height: 80px;
@@ -131,8 +156,8 @@
   100% { transform: translateY(-65px) scaleX(1.8); opacity: 0; }
 }
 
-.sky-desert   { background-image: url(/img/scenes/mountains.png); background-color: #e8c870; }
-.sky-plateau  { background-image: url(/img/scenes/socal_small.png); background-color: #5a9fd4; }
+.sky-desert   { background-image: url(/img/scenes/socal_smallB.png); background-color: #e8c870; }
+.sky-plateau  { background-image: url(/img/scenes/mountains.png); background-color: #5a9fd4; }
 .sky-mountain { background-image: url(/img/scenes/mountains.png); background-color: #3a70a8; }
 .sky-golden   { background-image: url(/img/scenes/mountains.png); background-color: #e08840; }
 .sky-dusk     { background-image: url(/img/scenes/mountains.png); background-color: #b04030; }

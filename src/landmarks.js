@@ -12,7 +12,7 @@ export function landmarkEvent() {
       image: 'events/grapevine.png',
       btn1: { id: 'crossRiver', label: 'Bluff It' },
       btn2: { id: 'detourRiver', label: 'Detour' },
-      message: "CARB enforcement units are scanning vehicles on the Grapevine. You can attempt to bluff through the checkpoint or take a back-road detour through the mountains (7 days)."
+      message: "CARB enforcement units are scanning vehicles on the Grapevine. You can attempt to bluff through the checkpoint or take a back-road detour through the mountains (2 days)."
     };
   } else if (dist === mark(0.4)) {
     return {
@@ -42,14 +42,14 @@ export function landmarkEvent() {
 
 export function detourRiver() {
   const { vehicle } = getState();
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 2; i++) {
     vehicle.days += 1;
     vehicle.food -= vehicle.characters.length * 5;
     vehicle.resourceChecker();
     vehicle.statusAdjuster();
   }
   vehicle.statusAdjuster();
-  return { message: 'You took the back roads through the mountains. Seven hard days but no checkpoint.' };
+  return { message: 'You took the back roads through the mountains. Two hard days but no checkpoint.' };
 }
 
 export function crossRiver() {

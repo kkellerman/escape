@@ -8,7 +8,7 @@ import * as ui from './ui.js';
 
 export function initHandlers() {
   // Initialize vehicle image sky class
-  document.getElementById('vehicle-images').classList.add('sky1');
+  document.getElementById('vehicle-images').classList.add('sky-cali');
 
   // Close #myModal when clicking anywhere on it
   document.getElementById('myModal').addEventListener('click', () => ui.hideInfoModal());
@@ -276,7 +276,7 @@ function handleResult(result, vehicle, allChars) {
   } else if (result.type === 'antifa') {
     setState({ antifaTax: result.tax });
     ui.showChoiceModal(
-      'events/fleeFail',
+      'events/antifa-i5.png',
       result.btn1.id,
       result.btn2.id,
       result.btn1.label,
