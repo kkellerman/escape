@@ -201,19 +201,35 @@ export function hideButtonModal() {
 
 // ─── Audio ────────────────────────────────────────────────────────────────────
 
+let soundEnabled = true;
+
+export function toggleSound() {
+  soundEnabled = !soundEnabled;
+  document.getElementById('sound-icon').textContent = soundEnabled ? '🔊' : '🔇';
+}
+
 export function playSound(id) {
+  if (!soundEnabled) return;
   const el = document.getElementById(id);
   if (el) el.play().catch(() => {});
 }
 
 // ─── Wheel-break animation ────────────────────────────────────────────────────
 
-const pause = ms => new Promise(r => setTimeout(r, ms));
+function pause(ms) {
+  return new Promise(function(resolve) {
+    setTimeout(resolve, ms);
+  });
+}
 
 export async function triggerWheelAnimation() {
   const wheelEl = document.getElementById('wheel-anim');
-  const show = el => { el.style.display = 'block'; };
-  const hide = el => { el.style.display = 'none'; };
+  function show(el) {
+    el.style.display = 'block';
+  }
+  function hide(el) {
+    el.style.display = 'none';
+  }
 
   wheelEl.classList.add('rolling');
   show(wheelEl);

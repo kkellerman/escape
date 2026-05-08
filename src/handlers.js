@@ -99,21 +99,14 @@ export function initHandlers() {
   });
   document.getElementById('mapModal').addEventListener('click', () => ui.hideMapModal());
 
+  // Sound toggle
+  document.getElementById('sound-button').addEventListener('click', () => ui.toggleSound());
+
   // Skull button — restart
   document.getElementById('sacrifice').addEventListener('click', () => location.reload());
 
   // Keyboard shortcuts (only active during gameplay)
-  document.addEventListener('keydown', e => {
-    if (!document.getElementById('gameMainScreen').style.display ||
-        document.getElementById('gameMainScreen').style.display === 'none') return;
-    if (e.target.tagName === 'INPUT') return;
-    switch (e.key.toUpperCase()) {
-      case 'D': document.getElementById('continue-button').click(); break;
-      case 'R': document.getElementById('rest-button').click();     break;
-      case 'S': document.getElementById('hunt-button').click();     break;
-      case 'M': document.getElementById('map-button').click();      break;
-    }
-  });
+  document.addEventListener('keydown', onGameplayKeydown);
 
   // Delegated clicks for dynamically-created modal buttons
   document.addEventListener('click', onDocumentClick);
@@ -146,6 +139,27 @@ function onCharacterSubmit() {
 
   ui.hideScreen('characterInput');
   ui.showScreen('destinationSelect', 500);
+}
+
+function onGameplayKeydown(e) {
+  const gameMainScreen = document.getElementById('gameMainScreen');
+  if (!gameMainScreen.style.display || gameMainScreen.style.display === 'none') return;
+  if (e.target.tagName === 'INPUT') return;
+
+  switch (e.key.toUpperCase()) {
+    case 'D':
+      document.getElementById('continue-button').click();
+      break;
+    case 'R':
+      document.getElementById('rest-button').click();
+      break;
+    case 'S':
+      document.getElementById('hunt-button').click();
+      break;
+    case 'M':
+      document.getElementById('map-button').click();
+      break;
+  }
 }
 
 // ─── Destination selection ────────────────────────────────────────────────────

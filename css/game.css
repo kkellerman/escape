@@ -77,10 +77,18 @@
 }
 
 #game-header #faq,
-#game-header #sacrifice-button {
+#game-header #sacrifice-button,
+#game-header #sound-button {
   position: static;
   margin-left: 10px;
 }
+
+#sound-button {
+  cursor: pointer;
+  font-size: 22px;
+  transition: transform .2s ease-in-out;
+}
+#sound-button:hover { transform: scale(1.2); }
 
 #faq img        { width: 32px; }
 #sacrifice-button { transition: all .2s ease-in-out; }
@@ -88,7 +96,9 @@
 #sacrifice-button:hover { transform: scale(1.2); }
 
 #faq .tooltiptext,
-#sacrifice-button .tooltiptext {
+#sacrifice-button .tooltiptext,
+#sound-button .tooltiptext,
+#map-button .tooltiptext {
   visibility: hidden;
   width: 331px;
   background-color: black;
@@ -105,7 +115,9 @@
 }
 
 #faq:hover .tooltiptext,
-#sacrifice-button:hover .tooltiptext {
+#sacrifice-button:hover .tooltiptext,
+#sound-button:hover .tooltiptext,
+#map-button:hover .tooltiptext {
   visibility: visible;
 }
 

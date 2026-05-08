@@ -18,7 +18,12 @@ export class Vehicle {
   }
 
   dailyFoodCost() {
-    return this.characters.reduce((sum, c) => sum + (c.isPet ? 5 / 8 : 5), 0);
+    return this.characters.reduce(function(sum, c) {
+      if (c.isPet) {
+        return sum + (5 / 8);
+      }
+      return sum + 5;
+    }, 0);
   }
 
   resourceChecker() {
@@ -62,13 +67,16 @@ export class Vehicle {
     const landmarks = [0.2, 0.4, 0.6, 0.8, 1.0].map(p => Math.round(goalDistance * p / 10) * 10);
     if (landmarks.includes(this.distance)) return null;
     const num = Math.floor(Math.random() * 100);
-    const tag = (r, tone) => r ? { ...r, tone } : null;
-    if (num >= 80) return tag(positiveEvent(), 'positive');
-    if (num >= 60) return tag(neutralEvent(), 'neutral');
-    if (num >= 40) return tag(negativeEvent(), 'negative');
-    if (num >= 35) return tag(deathEvent(), 'death');
+    function tagResult(result, tone) {
+      if (!result) return null;
+      return { ...result, tone };
+    }
+    if (num >= 80) return tagResult(positiveEvent(), 'positive');
+    if (num >= 60) return tagResult(neutralEvent(), 'neutral');
+    if (num >= 40) return tagResult(negativeEvent(), 'negative');
+    if (num >= 35) return tagResult(deathEvent(), 'death');
     if (num >= 28) return antifaEvent();
-    if (num >= 20) return tag(weatherEvent(this), 'negative');
+    if (num >= 20) return tagResult(weatherEvent(this), 'negative');
     return null;
   }
 
@@ -158,6 +166,7 @@ export class Vehicle {
 
   // Class selection: sets starting crypto bonus (food stays from kit)
   profession(input) {
+    this.professionClass = input;
     const classes = {
       1: { money: 800 },              // Professional
       2: { money: 400, food: 100 },   // Software Developer
@@ -187,6 +196,7 @@ export class Vehicle {
   buildScore() {
     let score = 10000;
     score -= ((this.days - 50) * 20) + ((5 - this.characters.length) * 2000) - (this.food * 0.2) - (this.money * 0.3) - (this.bullets * 0.1);
-    return score.toFixed();
+    const multiplier = this.professionClass === 3 ? 2.0 : this.professionClass === 2 ? 1.5 : 1.0;
+    return (score * multiplier).toFixed();
   }
 }
