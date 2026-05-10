@@ -497,3 +497,29 @@
   background-size: cover;
 }
 
+/* -- Hunting mini-game ---------------------------------------------------- */
+
+#hunting-screen {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 600;
+  border: 3px solid #333;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  cursor: crosshair;
+}
+
+#hunting-canvas {
+  display: block;
+}
+
+#hunting-retreat {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 12px;
+  padding: 3px 10px;
+}
+
