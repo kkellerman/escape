@@ -11,6 +11,9 @@ Add new ideas here instead of mid-build — nothing gets lost, everything gets i
   - Complete UI artwork for all pre-game setup screens (profession select, party naming, departure month, supply purchase)
   - _Blocked by: asset creation_
   - Jeep asset still vs moving
+  - Variations on Survalist store
+  - Region scenarios by 1/3rds.  1/3 socal/norcal, 2/3 california bordre 3/3 near destination
+  - Hunter Newsome 
 
 ---
 

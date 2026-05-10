@@ -4,6 +4,7 @@ import { Vehicle } from './Vehicle.js';
 import { storeBuy, storeSubTotal } from './store.js';
 import { crossRiver, detourRiver, sacrifice, flee, payAntifa, fightAntifa, fightBackAntifa } from './landmarks.js';
 import * as ui from './ui.js';
+import { startHunting } from './hunting.js';
 // showMapModal and hideMapModal are accessed via ui.*
 
 export function initHandlers() {
@@ -270,11 +271,31 @@ function onMedKit() {
 
 function onHunt() {
   const { vehicle, allChars } = getState();
-  const results = vehicle.huntingTime();
-  vehicle.resourceChecker();
-  ui.renderPlayerStatus(allChars, vehicle);
-  ui.renderHealthBars(allChars);
-  results.forEach(r => renderHuntResult(r));
+
+  if (vehicle.hunted === 1) {
+    ui.prependEvent("You've already scavenged today. Drive further before stopping again.", 'negative');
+    ui.playSound('shotgun-dry');
+    return;
+  }
+  if (vehicle.bullets <= 0) {
+    ui.prependEvent('No ammo remaining. Nothing to hunt with.', 'negative');
+    return;
+  }
+
+  vehicle.hunted = 1;
+  startHunting(vehicle, (foodGained, bulletsUsed) => {
+    vehicle.bullets = Math.max(0, vehicle.bullets - bulletsUsed);
+    vehicle.food += foodGained;
+    vehicle.resourceChecker();
+    ui.renderPlayerStatus(allChars, vehicle);
+    ui.renderHealthBars(allChars);
+    if (foodGained > 0) {
+      ui.prependEvent(`Hunt successful — ${foodGained} lbs of venison added to stores.`, 'positive');
+    } else {
+      ui.prependEvent('You came back empty-handed. The convoy is not impressed.', 'negative');
+    }
+  });
+
 }
 
 // ─── Result rendering ─────────────────────────────────────────────────────────
